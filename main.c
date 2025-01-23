@@ -3,15 +3,17 @@
 int main(void)
 {
 	//t_cmd *cmd;
-	char input[] = "echo 'Hello World' > file.txt | wc \0";
+	char input[] = "echo 'Hello World' > file.txt | wc    ";
 	char **tokens = tokenize(input);
 	int i;
 
 	i = 0;
 	while (tokens[i])
 	{
-		printf("Token[%d]: %s\n", i, tokens[i]);
+		printf("token attuale[%d]: %s\n", i, tokens[i]);
 		i++;
+		printf("next token[%d]: %s\n", i, tokens[i]);
+
 	}
 
 	// cmd = parse(tokens);

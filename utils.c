@@ -10,7 +10,7 @@ void	init(t_cmd *cmd)
 	if (!cmd)
 		return ;
 }
-
+/*
 int	ft_atoi(const char *str)
 {
 	int	result;
@@ -32,6 +32,7 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * result);
 }
+*/
 
 char	*ft_strdup(const char	*src)
 {
@@ -51,4 +52,14 @@ char	*ft_strdup(const char	*src)
 	}
 	copy[i] = '\0';
 	return (copy);
+}
+
+int my_strcmp(const char *str1, const char *str2)
+{
+	while (*str1 && *str2 && *str1 == *str2)
+	{
+		str1++;
+		str2++;
+	}
+	return *str1 - *str2;
 }

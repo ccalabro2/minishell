@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
+/*   Updated: 2025/01/23 18:36:07 by ccalabro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "struct.h"
 
 int main(void)
 {
 	//t_cmd *cmd;
-	char input[] = "echo 'Hello World' > file.txt | wc    ";
-	char **tokens = tokenize(input);
-	int i;
+	char	input[] = "echo 'Hello World' > file.txt | wc";
+	char	**tokens = tokenize(input);
+	int		i;
 
 	i = 0;
 	while (tokens[i])
@@ -13,9 +25,7 @@ int main(void)
 		printf("token attuale[%d]: %s\n", i, tokens[i]);
 		i++;
 		printf("next token[%d]: %s\n", i, tokens[i]);
-
 	}
-
 	// cmd = parse(tokens);
 	// printf("\nCommand: %s\n", cmd->command);
 	// i = 0;
@@ -46,6 +56,5 @@ int main(void)
 	// free(cmd->input);
 	// free(cmd->output);
 	// free(cmd);
-
-	return 0;
+	return (0);
 }

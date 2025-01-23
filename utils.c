@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/23 18:47:43 by ccalabro          #+#    #+#             */
+/*   Updated: 2025/01/23 18:47:44 by ccalabro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "struct.h"
 
 void	init(t_cmd *cmd)
@@ -54,12 +66,12 @@ char	*ft_strdup(const char	*src)
 	return (copy);
 }
 
-int my_strcmp(const char *str1, const char *str2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	while (*str1 && *str2 && *str1 == *str2)
-	{
-		str1++;
-		str2++;
-	}
-	return *str1 - *str2;
+	size_t	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

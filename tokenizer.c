@@ -1,42 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
+/*   Updated: 2025/01/23 18:03:58 by ccalabro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "struct.h"
 
-/*int is_space(char c)
+char	**tokenize(char *input)
 {
-	if (c > 0 && c <= 32)
-		return 1;
-	return 0;
-}
-
-char *rtrim(char *s)
-{
-    char* back = s + strlen(s);
-    while(is_space(*--back));
-    *(back+1) = '\0';
-    return s;
-}
-*/
-char **tokenize(char *input)
-{
-	char    **tokens;
-	char    quote;
-	char buffer [TOKEN_MAX];
-	//input = rtrim(input);
-	int i;
-	int j;
-	int token_count;
+	char	**tokens;
+	char	quote;
+	char	buffer [TOKEN_MAX];
+	int		i;
+	int		j;
+	int		token_count;
 
 	i = 0;
 	j = 0;
 	token_count = 0;
 	tokens = malloc(sizeof(char *) * TOKEN_MAX);
-
 	if (!tokens)
-		return NULL;
+		return (NULL);
 	while (input[i])
 	{
-		// TODO: al posto di \t includere tutti i tipi di spazi/tab
-		if (input[i] == '\t' || input[i] == ' ' || input[i] == '|' || input[i] == '<' || input[i] == '>')
+		if (input[i] == '\t' || input[i] == ' ' || input[i] == '|'
+			|| input[i] == '<' || input[i] == '>')
 		{
 			if (j > 0)
 			{
@@ -49,7 +43,6 @@ char **tokenize(char *input)
 			}
 			if (input[i] != ' ' && input[i] != '\t')
 			{
-
 				buffer[0] = input[i];
 				buffer[1] = '\0';
 				tokens[token_count] = strdup(buffer);
@@ -81,7 +74,6 @@ char **tokenize(char *input)
 		}
 		i++;
 	}
-
 	if (input[i] == '\0' && input[--i] != ' ')
 	{
 		buffer[j] = '\0';
@@ -91,6 +83,5 @@ char **tokenize(char *input)
 		printf("last token\n");
 		printf("j = %d\n", j);
 	}
-	
-	return tokens;
+	return (tokens);
 }

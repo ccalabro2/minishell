@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/23 18:36:40 by ccalabro          #+#    #+#             */
+/*   Updated: 2025/01/23 18:37:52 by ccalabro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "struct.h"
 
-t_cmd *parse(char **tokens)
+t_cmd	*parse(char **tokens)
 {
-	t_cmd *cmd;
-	cmd = NULL;
-	int i;
-	int arg_index;
+	t_cmd	*cmd;
+	int		i;
+	int		arg_index;
 
+	cmd = NULL;
 	i = 0;
 	arg_index = 0;
 	init(cmd);
@@ -43,5 +55,5 @@ t_cmd *parse(char **tokens)
 		i++;
 	}
 	cmd->args[arg_index] = NULL;
-	return cmd;
+	return (cmd);
 }

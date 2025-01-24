@@ -3,13 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:36:40 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/23 18:37:52 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:17:30 by goccia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*TODO:
+-gestire anche le pipe
+-accorciare la funzione dividendola in: (es)ft_operator per i primi 3 if e ft_cdm_args*/
 #include "struct.h"
 
 t_cmd	*parse(char **tokens)

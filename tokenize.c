@@ -6,10 +6,12 @@
 /*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/24 16:44:17 by goccia           ###   ########.fr       */
+/*   Updated: 2025/01/24 17:21:26 by goccia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*TODO:
+-accorciare la funzione dividendola in: ft_if_spaziature_o_operatori, ft_if_stringa*/
 #include "struct.h"
 
 char	**tokenize(char *input)

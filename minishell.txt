@@ -1,0 +1,16 @@
+funzioni in ordine di utilizzo:
+-chiamiamo prima la funzione tokenize che ci divide in token tutto quello che ci viene passato da terminale,
+-con la funzione parse riempiamo la struttura con i token(in parse non sono implementate le pipe
+)
+
+
+cose da sviluppare:
+-per chiudere il terminale sappiamo che o il command(ce sarebbe quello che gli passiamo da terminale) sarà == EXIT(e dovremo freearlo) oppure se gli passano in input(con ft fgets o read)con la combinazione Ctrl + D solamente se il buffer è 0
+-per generare il prompt la funzione è
+void display_prompt(void)
+{
+    // Stampa il prompt
+    printf("myshell> ");
+    fflush(stdout); // Assicura che il prompt sia visibile immediatamente
+} 
+unica cosa: abbastanza da coatti erchè appena scrivi minishell o il comando per far partire con la funzione fflush parte istante senza l'invio

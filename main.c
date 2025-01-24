@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/23 18:36:07 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:27:36 by goccia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(void)
 {
 	//t_cmd *cmd;
-	char	input[] = "echo 'Hello World' > file.txt | wc";
+	char	input[] = "echo 'Hello World' > file.txt | wc 	";
 	char	**tokens = tokenize(input);
 	int		i;
 

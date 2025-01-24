@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/23 18:03:58 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:37:54 by goccia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,23 @@ char	**tokenize(char *input)
 		return (NULL);
 	while (input[i])
 	{
-		if (input[i] == '\t' || input[i] == ' ' || input[i] == '|'
+		if (/*input[i] == '\t' || input[i] == ' ' */(input[i] >= 9 && input[i] <= 32) || input[i] == '|'
 			|| input[i] == '<' || input[i] == '>')
 		{
 			if (j > 0)
 			{
 				buffer[j] = '\0';
-				tokens[token_count] = strdup(buffer);
+				tokens[token_count] = ft_strdup(buffer);
 				token_count++;
 				j = 0;
 				printf("genera token\n");
 				printf("j = %d\n", j);
 			}
-			if (input[i] != ' ' && input[i] != '\t')
+			if (input[i] != ' ' && input[i] != '\t')/* (input[i] < 9 && input[i] > 32)*/
 			{
 				buffer[0] = input[i];
 				buffer[1] = '\0';
-				tokens[token_count] = strdup(buffer);
+				tokens[token_count] = ft_strdup(buffer);
 				token_count++;
 				printf("genera token operatore\n");
 			}
@@ -62,7 +62,7 @@ char	**tokenize(char *input)
 			}
 			printf("fine stringa\n");
 			buffer[j] = '\0';
-			tokens[token_count] = strdup(buffer);
+			tokens[token_count] = ft_strdup(buffer);
 			token_count++;
 			j = 0;
 		}
@@ -74,10 +74,10 @@ char	**tokenize(char *input)
 		}
 		i++;
 	}
-	if (input[i] == '\0' && input[--i] != ' ')
+	if (input[i] == '\0' && /*input[--i] != ' '*/ input[--i] < 9 && input[--i] > 32)
 	{
 		buffer[j] = '\0';
-		tokens[token_count] = strdup(buffer);
+		tokens[token_count] = ft_strdup(buffer);
 		token_count++;
 		j = 0;
 		printf("last token\n");

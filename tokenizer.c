@@ -6,7 +6,7 @@
 /*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/24 16:37:54 by goccia           ###   ########.fr       */
+/*   Updated: 2025/01/24 16:44:17 by goccia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	**tokenize(char *input)
 		}
 		i++;
 	}
-	if (input[i] == '\0' && /*input[--i] != ' '*/ input[--i] < 9 && input[--i] > 32)
+	if (input[i] == '\0' && input[--i] != ' ' /*input[--i] < 9 && input[--i] > 32*/)
 	{
 		buffer[j] = '\0';
 		tokens[token_count] = ft_strdup(buffer);

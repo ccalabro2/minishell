@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/23 18:45:28 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:59:33 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,7 @@ char	*ft_strdup(const char	*src);
 char	**ft_split(char const *s, char c);
 void	init(t_cmd *cmd);
 size_t	ft_strlen(const char	*str);
+char	*if_is_io_redirection(char *str, char **tokens);
+char	*if_is_space_tab(char	*str, char **tokens);
+char	*if_is_quote(char	*str, char **tokens);
+char	*if_is_null(char *str, char **tokens, char *buffer);

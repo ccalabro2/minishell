@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/24 17:39:06 by goccia           ###   ########.fr       */
+/*   Updated: 2025/01/28 13:25:39 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(void)//gli passeremo argc e argv
 	char	input[] = "echo 'Hello World' > file.txt | wc";
 	char	**tokens = tokenize(input);
 	int		i;
-	int		j;
+	//int		j;
 
 	i = 0;
 	while (tokens[i])
@@ -30,7 +30,7 @@ int main(void)//gli passeremo argc e argv
 	// cmd = parse(tokens);
 	// printf("\nCommand: %s\n", cmd->command);
 	// j = 0;
-	// while (cmd->args[j]) 
+	// while (cmd->args[j])
 	// {
 	// 	printf("Arg[%d]: %s\n", j, cmd->args[j]);
 	// 	j++;

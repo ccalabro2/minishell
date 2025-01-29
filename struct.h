@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/29 16:01:38 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:38:35 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_tokenize
 }	t_tokenize;
 
 
-t_cmd	*parse(char **tokens);
+t_cmd	parse(char **tokens);
 char	**tokenize(char *input);
 //int main(void);
 int		ft_strcmp(const char *s1, const char *s2);

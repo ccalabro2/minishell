@@ -6,22 +6,22 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/29 17:43:04 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/29 20:32:44 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 
-int main(int argc, char **argv)//gli passeremo argc e argv
+int	main(int argc, char **argv)
 {
-	if (argc != 2)
-		return (0);
-	t_cmd cmd;
-	//char	input[] = "echo 'Hello World' > file.txt | wc";
+	t_cmd	cmd;
 	char	**tokens = tokenize(argv[1]);
 	int		i;
-	//int		j;
 
+	if (argc != 2)
+		return (0);
+	//char	input[] = "echo 'Hello World' > file.txt | wc";
+	//int		j;
 	i = 0;
 	while (tokens[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/29 17:38:35 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:10:27 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #define TOKEN_MAX 1024
 
-typedef struct s_cmd	t_cmd;
+typedef struct s_cmd		t_cmd;
 typedef struct s_tokenize	t_tokenize;
 
 typedef struct s_cmd
@@ -25,7 +25,7 @@ typedef struct s_cmd
 	char	**args; // argomenti
 	char	*input; // file di input(se cè redirect)
 	char	*output; // file di output(se cè redirect)
-	int		flag; // flag per '>>'
+	int		flag; // flag per '>>' e '<<'
 }	t_cmd;
 
 typedef struct s_tokenize
@@ -38,10 +38,9 @@ typedef struct s_tokenize
 	int		token_count;
 }	t_tokenize;
 
-
 t_cmd	parse(char **tokens);
 char	**tokenize(char *input);
-//int main(void);
+int		main(int argc, char **argv);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_atoi(const char *str);
 char	*ft_strdup(const char	*src);

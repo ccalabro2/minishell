@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/29 14:45:07 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:01:38 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,7 @@ char	*ft_strdup(const char	*src);
 char	**ft_split(char const *s, char c);
 void	init(t_cmd *cmd);
 size_t	ft_strlen(const char	*str);
+void	ft_space_or_operator(t_tokenize *t, char *input);
+void	ft_quote_str(t_tokenize *t, char *input);
+void	ft_else_char(t_tokenize *t, char *input);
+void	ft_last_token(t_tokenize *t);

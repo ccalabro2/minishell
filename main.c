@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/28 13:25:39 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:36:43 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 
-int main(void)//gli passeremo argc e argv
+int main(int argc, char **argv)//gli passeremo argc e argv
 {
+	if (argc != 2)
+		return (0);
 	//t_cmd *cmd;
-	char	input[] = "echo 'Hello World' > file.txt | wc";
-	char	**tokens = tokenize(input);
+	//char	input[] = "echo 'Hello World' > file.txt | wc";
+	char	**tokens = tokenize(argv[1]);
 	int		i;
 	//int		j;
 

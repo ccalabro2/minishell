@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/28 13:59:33 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:45:07 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #define TOKEN_MAX 1024
 
 typedef struct s_cmd	t_cmd;
+typedef struct s_tokenize	t_tokenize;
 
 typedef struct s_cmd
 {
@@ -27,6 +28,17 @@ typedef struct s_cmd
 	int		flag; // flag per '>>'
 }	t_cmd;
 
+typedef struct s_tokenize
+{
+	char	**tokens;
+	char	quote;
+	char	buffer [TOKEN_MAX];
+	int		i;
+	int		j;
+	int		token_count;
+}	t_tokenize;
+
+
 t_cmd	*parse(char **tokens);
 char	**tokenize(char *input);
 //int main(void);
@@ -36,7 +48,3 @@ char	*ft_strdup(const char	*src);
 char	**ft_split(char const *s, char c);
 void	init(t_cmd *cmd);
 size_t	ft_strlen(const char	*str);
-char	*if_is_io_redirection(char *str, char **tokens);
-char	*if_is_space_tab(char	*str, char **tokens);
-char	*if_is_quote(char	*str, char **tokens);
-char	*if_is_null(char *str, char **tokens, char *buffer);

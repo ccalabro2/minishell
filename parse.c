@@ -6,14 +6,14 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:36:40 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/30 14:58:47 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:24:43 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*TODO:
 -gestire anche le pipe
 -accorciare la funzione dividendola in: (es)ft_operator per i primi 3 if e ft_cdm_args
--fare per l'operatore < quello che ho fatto per il maggiore............fatto*/
+*/
 #include "struct.h"
 
 t_cmd	parse(char **tokens)
@@ -27,41 +27,11 @@ t_cmd	parse(char **tokens)
 	init(&cmd);
 	while (tokens[i])
 	{
-		printf("TOKEN %s\n", tokens[i]);
-//per operatori << e <
+		printf("(siamo in parse)TOKEN: %s\n", tokens[i]);
 		if (*tokens[i] == '<')
-		{
-			if (*(tokens[i] + 1))
-			{
-				if (tokens[i])
-				{
-					cmd.input = strdup(tokens[i]);
-					cmd.flag = 1;
-				}
-			}
-			else
-			{
-				if (tokens[i])
-					cmd.input = strdup(tokens[i]);
-			}
-		}
-//per operatori >> e >
+			ft_output_redirect_parse(&cmd, tokens, i);
 		else if (*tokens[i] == '>')
-		{
-			if (*(tokens[i] + 1)) //scrivo cosi perche con il tokenize l'ho divisi in modo che per certo il carattere successivo sará null oppure sará >
-			{
-				if (tokens[i])
-				{
-					cmd.output = strdup(tokens[i]);
-					cmd.flag = 1;
-				}
-			}
-			else
-			{
-				if (tokens[i])
-					cmd.output = strdup(tokens[i]);
-			}
-		}
+			ft_input_redirect_parse(&cmd, tokens, i);
 		else if (!cmd.command)
 			cmd.command = strdup(tokens[i]);
 		else

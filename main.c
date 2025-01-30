@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/29 20:32:44 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:25:14 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	main(int argc, char **argv)
 	//char	input[] = "echo 'Hello World' > file.txt | wc";
 	//int		j;
 	i = 0;
-	while (tokens[i])
+	/*while (tokens[i])
 	{
 		printf("token attuale[%d]: %s\n", i, tokens[i]);
 		i++;
 		printf("next token[%d]: %s\n", i, tokens[i]);
-	}
+	}*/
 	cmd = parse(tokens);
 	// printf("\nCommand: %s\n", cmd->command);
 	// j = 0;

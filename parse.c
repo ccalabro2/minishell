@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:36:40 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/29 21:09:02 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:58:47 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_cmd	parse(char **tokens)
 		{
 			if (*(tokens[i] + 1))
 			{
-				//printf("TOKEN %s\n", tokens[i]);
 				if (tokens[i])
 				{
 					cmd.input = strdup(tokens[i]);
@@ -42,7 +41,6 @@ t_cmd	parse(char **tokens)
 			}
 			else
 			{
-				//printf("TOKEN %s\n", tokens[i]);
 				if (tokens[i])
 					cmd.input = strdup(tokens[i]);
 			}
@@ -52,7 +50,6 @@ t_cmd	parse(char **tokens)
 		{
 			if (*(tokens[i] + 1)) //scrivo cosi perche con il tokenize l'ho divisi in modo che per certo il carattere successivo sará null oppure sará >
 			{
-				//printf("TOKEN %s\n", tokens[i]);
 				if (tokens[i])
 				{
 					cmd.output = strdup(tokens[i]);
@@ -61,19 +58,14 @@ t_cmd	parse(char **tokens)
 			}
 			else
 			{
-				//printf("TOKEN %s\n", tokens[i]);
 				if (tokens[i])
 					cmd.output = strdup(tokens[i]);
 			}
 		}
 		else if (!cmd.command)
-		{
-			//printf("TOKEN %s\n", tokens[i]);
 			cmd.command = strdup(tokens[i]);
-		}
 		else
 		{
-			//printf("TOKEN %s\n", tokens[i]);
 			cmd.args[arg_index] = strdup(tokens[i]);
 			arg_index++;
 		}

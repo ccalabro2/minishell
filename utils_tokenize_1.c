@@ -1,17 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_tokenize.c                                   :+:      :+:    :+:   */
+/*   utils_tokenize_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:23:18 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/29 21:14:36 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:56:52 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*TODO:
--ottimizzare l'operatore < come ho fatto per il maggiore*/
 #include "struct.h"
 
 void	ft_space_or_operator(t_tokenize *t, char *input)
@@ -28,42 +26,10 @@ void	ft_space_or_operator(t_tokenize *t, char *input)
 	if (input[t->i] != ' ' && input[t->i] != '\t')
 	{
 		t->buffer[0] = input[t->i];
-//operatori >> e >
 		if (input[t->i] == '>')
-		{
-			t->i = t->i + 1;
-			if (input[t->i] == '>')
-			{
-				t->buffer[1] = '>';
-				t->buffer[2] = '\0';
-			}
-			else
-			{
-				t->i = t->i - 1;
-				t->buffer[1] = '\0';
-			}
-			t->tokens[t->token_count] = ft_strdup(t->buffer);
-			t->token_count++;
-			printf("genera token operatore\n");
-		}
-//operatori << e <
+			ft_output_redirect(t, input);
 		else if (input[t->i] == '<')
-		{
-			t->i = t->i + 1;
-			if (input[t->i] == '<')
-			{
-				t->buffer[1] = '<';
-				t->buffer[2] = '\0';
-			}
-			else
-			{
-				t->i = t->i - 1;
-				t->buffer[1] = '\0';
-			}
-			t->tokens[t->token_count] = ft_strdup(t->buffer);
-			t->token_count++;
-			printf("genera token operatore\n");
-		}
+			ft_input_redirect(t, input);
 		else
 		{
 			t->buffer[1] = '\0';

@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/29 21:10:27 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/30 14:55:53 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,3 +51,5 @@ void	ft_space_or_operator(t_tokenize *t, char *input);
 void	ft_quote_str(t_tokenize *t, char *input);
 void	ft_else_char(t_tokenize *t, char *input);
 void	ft_last_token(t_tokenize *t);
+void	ft_output_redirect(t_tokenize *t, char *input);
+void	ft_input_redirect(t_tokenize *t, char *input);

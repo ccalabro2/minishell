@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:23:18 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/30 14:56:52 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:41:07 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	ft_quote_str(t_tokenize *t, char *input)
 		t->j++;
 		t->i++;
 	}
+	/*	if per interrompere quando non chiudiamo le virgolette
+		-trovare il modo per uscire dato che non puó returnare nulla essendo void
+	if(!input[t->i])
+		return;*/
 	printf("fine stringa\n");
 	t->buffer[t->j] = '\0';
 	t->tokens[t->token_count] = ft_strdup(t->buffer);

@@ -6,10 +6,14 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/29 16:02:37 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/01/30 17:54:42 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*TODO:
+implementare il $ prima di tutto cosicché riconosca che quello che segue è
+il nome di una variabile d'ambiente e di conseguenza (spiegazione accurata-> chat gpt)
+*/
 #include "struct.h"
 
 char	**tokenize(char *input)

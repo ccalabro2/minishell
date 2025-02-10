@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/10 16:10:15 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:58:43 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 #include "../struct.h"
 
 
-void here_doc_open(char *del)
+void	here_doc_open(char *del)
 {
-	char *here_doc_line = ft_strdup("");
-	char    *new;
+	char	*here_doc_line;
+	char	*new;
+	int		fd;
 
-	int fd = open("IN_HEREDOC", O_WRONLY|O_CREAT|O_APPEND, 0644);
+	new = ft_strdup("");
+	here_doc_line = ft_strdup("");
+	fd = open("IN_HEREDOC", O_WRONLY|O_CREAT|O_APPEND, 0644);
 	//funzione per creare file e passaggi
 	while(1)
 	{
@@ -27,7 +30,8 @@ void here_doc_open(char *del)
 		// stampa nel file input
 		if(ft_strcmp(here_doc_line, del) == 0)
 			break;
-		new = expand_variables(here_doc_line, true );
+
+		new = expand_variables(here_doc_line, true ); //funzione di chat(va cambiata)
 		write(fd, new, ft_strlen(here_doc_line));
 		write(fd, "\n", 1);
 		// QUANDO HAI LETTO SCRIVI NEL FILE QUELLO CHE HAI SCRITTO IN HEREDOC
@@ -71,7 +75,7 @@ int here_doc(char *str)
 	//printf("Stringa finale senza heredoc: %s\n", retun);
 	if (boll == 0)
 		here_doc_open(del);
-	if ((del[ft_strlen(del) - 1] == '\'' && (del[ft_strlen(del) - ft_strlen(del)] == '\'')) || ((del[ft_strlen(del) - 1] == '\"')
+	if ((del[ft_strlen(del) - 1] == '\'' && (del[0] == '\'')) || ((del[ft_strlen(del) - 1] == '\"')
 				&& (del[ft_strlen(del) - ft_strlen(del)] == '\"')))
 				{
 					found_quote_in_del = true; // QUINDI gestisci l'espansione: SE CI SONO APICI NON ESPANDE

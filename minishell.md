@@ -1,18 +1,33 @@
-funzioni in ordine di utilizzo:
--chiamiamo prima la funzione tokenize che ci divide in token tutto quello che ci viene passato da terminale,
--con la funzione parse riempiamo la struttura con i token(in parse non sono implementate le pipe
-)
+PULIRE IL CODICE:
+fare delle struct per read
+vedere che le funzioni non superino i 25
+norminettare
+
+FINIRE IL TOKENIZE:
+$
+pipe
+
+DA FARE 11/02
+risolvere la questione apici per heredoc
+andare avanti
 
 
-cose da sviluppare:
--per chiudere il terminale sappiamo che o il command(ce sarebbe quello che gli passiamo da terminale) sarà == EXIT(e dovremo freearlo) oppure se gli passano in input(con ft fgets o read)con la combinazione Ctrl + D solamente se il buffer è 0
--per generare il prompt la funzione è
-void display_prompt(void)
-{
-    // Stampa il prompt
-    printf("myshell> ");
-    fflush(stdout); // Assicura che il prompt sia visibile immediatamente
-}
-unica cosa: abbastanza da coatti erchè appena scrivi minishell o il comando per far partire con la funzione fflush parte istante senza l'invio
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+ordine di come funziona mini:
+read: apre un prompt nella shell(visivamente abbiamo il nostro terminale "minishell > ...")
+    dopo aver aperto il prompt inizia minishell; due scenari:
+    1)classica gestione degli operatori (tokenize, parse ecc...)
+    2)heredoc: in questo caso utilizzeremo readline fino a quando non troverermo il del. il contenuto dell'heredoc verrá eseguito in base al comando che lo precede (es. cat, echo ecc...)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:47:43 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/23 18:47:44 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:42:13 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,23 @@ void	init(t_cmd *cmd)
 	if (!cmd)
 		return ;
 }
-/*
-int	ft_atoi(const char *str)
-{
-	int	result;
-	int	sign;
 
-	sign = 1;
-	result = 0;
-	while ((*str >= '\t' && *str <= '\r') || *str == ' ')
-		++str;
-	if (*str == '+' || *str == '-')
+void trim_quotes(char *str)
+{
+    int i = 0;
+	int j = 0;
+
+    while (str[i])
 	{
-		if (*(str++) == '-')
-			sign *= -1;
-	}
-	while (ft_isdigit(*str))
-	{
-		result = result * 10;
-		result += (*str++ - '0');
-	}
-	return (sign * result);
+        if (str[i] != '\'' && str[i] != '\"')
+		{
+            str[j] = str[i];
+            j++;
+        }
+        i++;
+    }
 }
-*/
+
 
 char	*ft_strdup(const char	*src)
 {
@@ -74,4 +68,24 @@ int	ft_strcmp(const char *s1, const char *s2)
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
+{
+	size_t	enddest;
+	size_t	endsrc;
+	size_t	i;
+
+	i = 0;
+	endsrc = ft_strlen(src);
+	if (size == 0 || size <= ft_strlen(dest))
+		return (size + endsrc);
+	enddest = ft_strlen(dest);
+	while (i < size - enddest - 1 && src[i])
+	{
+		dest[i + enddest] = src[i];
+		i++;
+	}
+	dest[i + enddest] = '\0';
+	return (enddest + endsrc);
 }

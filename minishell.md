@@ -12,5 +12,7 @@ void display_prompt(void)
     // Stampa il prompt
     printf("myshell> ");
     fflush(stdout); // Assicura che il prompt sia visibile immediatamente
-} 
+}
 unica cosa: abbastanza da coatti erchè appena scrivi minishell o il comando per far partire con la funzione fflush parte istante senza l'invio
+
+

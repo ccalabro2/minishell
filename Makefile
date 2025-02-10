@@ -1,27 +1,25 @@
 NAME = minishell
-ARCH = minishell.a
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-MAKE_LIB = ar -rcs
+LDFLAGS = -lreadline -lncurses -LIBFTDIR
+LIBFTDIR = ./libft/Project1/libft.a
 
-SRCS = $(wildcard *.c)
+SRCS = $(wildcard *.c) \
+		$(wildcard ./read/*.c)
 OBJS = $(SRCS:.c=.o)
 
-all : $(NAME)
+all: $(NAME)
 
-$(NAME) : $(ARCH)
-	$(CC) $< -o $@
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-$(ARCH) : $(OBJS)
-	$(MAKE_LIB) $(ARCH) $^
-
-%.o : %.c
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clean :
-	rm -f $(OBJS) $(ARCH)
+clean:
+	rm -f $(OBJS)
 
-fclean : clean
+fclean: clean
 	rm -f $(NAME)
 
-re : fclean all
+re: fclean all

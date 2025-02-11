@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/10 17:58:43 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:40:31 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int here_doc(char *str)
 	int i = 0;
 	int k = 0;
 	int f = 0;
-	bool found_quote_in_del = false;
-	///int len = ft_strlen(str);
+
 	int boll = 1;
 	char del[250] = {0};  // Inizializza l'array
 	char retun[250] = {0};
@@ -59,6 +58,8 @@ int here_doc(char *str)
 			k = 0;  // Reset per riempire correttamente del[]
 			while (str[i] && str[i] > 32 && k < 249)
 			{  // Legge il delimitatore
+				while (str[i] == '\'' || str[i] == '\"')
+					i++;
 				del[k++] = str[i++];
 			}
 			del[k] = '\0';  // Termina la stringa
@@ -75,13 +76,6 @@ int here_doc(char *str)
 	//printf("Stringa finale senza heredoc: %s\n", retun);
 	if (boll == 0)
 		here_doc_open(del);
-	if ((del[ft_strlen(del) - 1] == '\'' && (del[0] == '\'')) || ((del[ft_strlen(del) - 1] == '\"')
-				&& (del[ft_strlen(del) - ft_strlen(del)] == '\"')))
-				{
-					found_quote_in_del = true; // QUINDI gestisci l'espansione: SE CI SONO APICI NON ESPANDE
-					printf((found_quote_in_del == true) ? "found quote is true\n": "found quote ifalse\n");
-					trim_quotes(del);
-				}
 	return boll;
 }
 

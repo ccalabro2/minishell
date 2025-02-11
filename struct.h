@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/10 18:05:13 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:15:03 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ void	ft_output_redirect(t_tokenize *t, char *input);
 void	ft_input_redirect(t_tokenize *t, char *input);
 void	ft_output_redirect_parse(t_cmd *cmd, char **tokens, int i);
 void	ft_input_redirect_parse(t_cmd *cmd, char **tokens, int i);
-void	trim_quotes(char *str);
+char	*trim_quotes(char *str);
 void	v_read();
 char	*expand_variables(char *line, bool global_var_enable);

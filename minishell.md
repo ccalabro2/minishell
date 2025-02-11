@@ -7,25 +7,6 @@ FINIRE IL TOKENIZE:
 $
 pipe
 
-DA FARE 11/02
-risolvere la questione apici per heredoc
-andare avanti
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ordine di come funziona mini:
 read: apre un prompt nella shell(visivamente abbiamo il nostro terminale "minishell > ...")
     dopo aver aperto il prompt inizia minishell; due scenari:

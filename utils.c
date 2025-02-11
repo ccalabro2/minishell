@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:47:43 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/07 15:42:13 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:18:22 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ void	init(t_cmd *cmd)
 		return ;
 }
 
-void trim_quotes(char *str)
+char *trim_quotes(char *str)
 {
-    int i = 0;
-	int j = 0;
+    int i;
+	int j;
+
+	j = 0;
+	i = 0;
 
     while (str[i])
 	{
@@ -37,7 +40,9 @@ void trim_quotes(char *str)
         }
         i++;
     }
+	return (str);
 }
+
 
 
 char	*ft_strdup(const char	*src)

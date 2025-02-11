@@ -5,7 +5,12 @@ LDFLAGS = -lreadline -lncurses -LIBFTDIR
 LIBFTDIR = ./libft/Project1/libft.a
 
 SRCS = $(wildcard *.c) \
-		$(wildcard ./read/*.c)
+		$(wildcard ./read/*.c) \
+		$(wildcard ./libft/*.c) \
+		$(wildcard ./parse/*.c) \
+		$(wildcard ./tokenize/*.c)
+
+
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_tokenize_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:23:18 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/30 17:41:07 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:16:02 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "../struct.h"
 
 void	ft_space_or_operator(t_tokenize *t, char *input)
 {

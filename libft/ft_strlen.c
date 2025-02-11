@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 16:47:47 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/11 16:54:56 by gd-auria         ###   ########.fr       */
+/*   Created: 2024/01/30 01:09:59 by ccalabro          #+#    #+#             */
+/*   Updated: 2025/02/11 17:18:38 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "../struct.h"
 
-void	*ft_memset(void *ptr, int value, size_t count)
+size_t	ft_strlen(const char	*str)
 {
-	char	*strptr;
-	size_t	i;
+	size_t	a;
 
-	strptr = (char *)ptr;
-	i = 0;
-	while (i < count)
-	{
-		strptr[i] = value;
-		i++;
-	}
-	return (ptr);
+	a = 0;
+	while (str[a] != '\0')
+		a++;
+	return (a);
 }

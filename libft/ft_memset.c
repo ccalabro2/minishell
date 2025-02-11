@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 18:47:43 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/11 17:25:36 by gd-auria         ###   ########.fr       */
+/*   Created: 2025/02/11 16:47:47 by gd-auria          #+#    #+#             */
+/*   Updated: 2025/02/11 17:18:08 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "../struct.h"
 
-char *trim_quotes(char *str)
+void	*ft_memset(void *ptr, int value, size_t count)
 {
-    int i;
-	int j;
+	char	*strptr;
+	size_t	i;
 
-	j = 0;
+	strptr = (char *)ptr;
 	i = 0;
-
-    while (str[i])
+	while (i < count)
 	{
-        if (str[i] != '\'' && str[i] != '\"')
-		{
-            str[j] = str[i];
-            j++;
-        }
-        i++;
-    }
-	return (str);
+		strptr[i] = value;
+		i++;
+	}
+	return (ptr);
 }

@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 18:47:43 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/11 17:25:36 by gd-auria         ###   ########.fr       */
+/*   Created: 2025/02/11 17:23:38 by gd-auria          #+#    #+#             */
+/*   Updated: 2025/02/11 17:24:02 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "../struct.h"
 
-char *trim_quotes(char *str)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-    int i;
-	int j;
+	size_t	enddest;
+	size_t	endsrc;
+	size_t	i;
 
-	j = 0;
 	i = 0;
-
-    while (str[i])
+	endsrc = ft_strlen(src);
+	if (size == 0 || size <= ft_strlen(dest))
+		return (size + endsrc);
+	enddest = ft_strlen(dest);
+	while (i < size - enddest - 1 && src[i])
 	{
-        if (str[i] != '\'' && str[i] != '\"')
-		{
-            str[j] = str[i];
-            j++;
-        }
-        i++;
-    }
-	return (str);
+		dest[i + enddest] = src[i];
+		i++;
+	}
+	dest[i + enddest] = '\0';
+	return (enddest + endsrc);
 }

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 18:47:43 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/11 17:25:36 by gd-auria         ###   ########.fr       */
+/*   Created: 2025/02/11 17:22:34 by gd-auria          #+#    #+#             */
+/*   Updated: 2025/02/11 17:22:57 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "../struct.h"
 
-char *trim_quotes(char *str)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-    int i;
-	int j;
+	size_t	i;
 
-	j = 0;
 	i = 0;
-
-    while (str[i])
-	{
-        if (str[i] != '\'' && str[i] != '\"')
-		{
-            str[j] = str[i];
-            j++;
-        }
-        i++;
-    }
-	return (str);
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

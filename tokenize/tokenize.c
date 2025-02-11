@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/10 15:58:04 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:15:29 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 implementare il $ prima di tutto cosicché riconosca che quello che segue è
 il nome di una variabile d'ambiente e di conseguenza (spiegazione accurata-> chat gpt)
 */
-#include "struct.h"
+#include "../struct.h"
 
 char	**tokenize(char *input)
 {

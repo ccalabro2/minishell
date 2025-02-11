@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/11 16:50:43 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:37:48 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ typedef struct s_cmd
 	int		flag;
 }	t_cmd;
 
-
-/*typedef struct s_heredoc
+typedef struct s_heredoc
 {
 	int		i;
 	int		k;
@@ -57,14 +56,14 @@ typedef struct s_cmd
 	int		boll;
 	char	del[250];
 	char	retun[250];
-}*/
-
+}	t_heredoc;
 
 t_cmd	parse(char **tokens);
+size_t	ft_strlen(const char	*str);
 int		main();
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_atoi(const char *str);
-size_t	ft_strlen(const char	*str);
+int		heredoc(char *str);
 char	*trim_quotes(char *str);
 char	**tokenize(char *input);
 char	*ft_strdup(const char	*src);
@@ -81,3 +80,4 @@ void	ft_output_redirect_parse(t_cmd *cmd, char **tokens, int i);
 void	ft_input_redirect_parse(t_cmd *cmd, char **tokens, int i);
 void	*ft_memset(void *ptr, int value, size_t count);
 void	v_read();
+void	here_doc_open(char *del);

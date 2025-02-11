@@ -6,11 +6,11 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:06:40 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/11 14:48:51 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:38:20 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "../struct.h"
 
 /*char *expand_variables(char *line, bool global_var_enable)
 {
@@ -68,12 +68,16 @@
 	free(result);
 	return line;
 }*/
-char *expand_variables(char *line, bool global_var_enable)
+
+
+
+
+char *expand_variables(char *line, bool global_var_enable) ///
 {
 	char	*result;
 	size_t	i;
 	size_t	j;
-	bool	in_single_quotes;
+	//bool	in_single_quotes;
 	char	var_name[256];
 	char	*var_value;
 
@@ -86,17 +90,17 @@ char *expand_variables(char *line, bool global_var_enable)
 
 	i = 0;
 	j = 0;
-	in_single_quotes = false;
+	//in_single_quotes = false;
 
 	while (line[i])
 	{
 		if (line[i] == '\'')
 		{
-			in_single_quotes = !in_single_quotes;
+			//in_single_quotes = !in_single_quotes;
 			result[j++] = line[i++];
 			continue;
 		}
-		if (line[i] == '$' && !in_single_quotes)
+		if (line[i] == '$')//&& !in_single_quotes)
 		{
 			if (line[i + 1] == '?')
 			{
@@ -137,4 +141,3 @@ char *expand_variables(char *line, bool global_var_enable)
 
 	return line;
 }
-

@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 01:09:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/23 14:12:32 by gd-auria         ###   ########.fr       */
+/*   Created: 2025/02/11 17:21:34 by gd-auria          #+#    #+#             */
+/*   Updated: 2025/02/11 17:21:57 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "../struct.h"
 
-size_t	ft_strlen(const char	*str)
+char	*ft_strdup(const char	*src)
 {
-	size_t	a;
+	char	*copy;
+	size_t	len;
+	size_t	i;
 
-	a = 0;
-	while (str[a] != '\0')
-		a++;
-	return (a);
+	i = 0;
+	len = ft_strlen(src);
+	copy = (char *)malloc(sizeof(char) * (len + 1));
+	if (copy == NULL)
+		return (NULL);
+	while (src[i] != '\0')
+	{
+		copy[i] = src[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
 }

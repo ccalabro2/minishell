@@ -6,11 +6,11 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/23 14:12:19 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:18:23 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "../struct.h"
 
 static char	**free_array(char **ptr, int i)
 {

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:36:40 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/01/30 15:35:46 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:17:06 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*TODO:
 -gestire anche le pipe
 */
-#include "struct.h"
+#include "../struct.h"
 
 t_cmd	parse(char **tokens)
 {

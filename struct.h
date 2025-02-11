@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/11 15:15:03 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:50:43 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,40 +24,53 @@
 #define MAX_LINE 1024
 #define TOKEN_MAX 1024
 
+typedef struct s_tokenize	t_tokenize;
 typedef struct s_cmd		t_cmd;
-typedef struct s_tokenize
-t_tokenize;
-
-typedef struct s_cmd
-{
-	char	*command; // nome comando
-	char	**args; // argomenti
-	char	*input; // file di input(se cè redirect)
-	char	*output; // file di output(se cè redirect)
-	int		flag; // flag per '>>' e '<<'
-}	t_cmd;
+typedef struct s_heredoc	t_heredoc;
 
 typedef struct s_tokenize
 {
 	char	**tokens;
 	char	quote;
 	char	buffer [TOKEN_MAX];
+	char	*input;
 	int		i;
 	int		j;
 	int		token_count;
-	char	*input;
 }	t_tokenize;
 
+typedef struct s_cmd
+{
+	char	*command;
+	char	**args;
+	char	*input;
+	char	*output;
+	int		flag;
+}	t_cmd;
+
+
+/*typedef struct s_heredoc
+{
+	int		i;
+	int		k;
+	int		f;
+	int		boll;
+	char	del[250];
+	char	retun[250];
+}*/
+
+
 t_cmd	parse(char **tokens);
-char	**tokenize(char *input);
-int main();
-//int		main(int argc, char **argv);
+int		main();
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_atoi(const char *str);
+size_t	ft_strlen(const char	*str);
+char	*trim_quotes(char *str);
+char	**tokenize(char *input);
 char	*ft_strdup(const char	*src);
 char	**ft_split(char const *s, char c);
+char	*expand_variables(char *line, bool global_var_enable);
 void	init(t_cmd *cmd);
-size_t	ft_strlen(const char	*str);
 void	ft_space_or_operator(t_tokenize *t, char *input);
 void	ft_quote_str(t_tokenize *t, char *input);
 void	ft_else_char(t_tokenize *t, char *input);
@@ -66,6 +79,5 @@ void	ft_output_redirect(t_tokenize *t, char *input);
 void	ft_input_redirect(t_tokenize *t, char *input);
 void	ft_output_redirect_parse(t_cmd *cmd, char **tokens, int i);
 void	ft_input_redirect_parse(t_cmd *cmd, char **tokens, int i);
-char	*trim_quotes(char *str);
+void	*ft_memset(void *ptr, int value, size_t count);
 void	v_read();
-char	*expand_variables(char *line, bool global_var_enable);

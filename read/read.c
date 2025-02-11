@@ -6,13 +6,11 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/11 15:40:31 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:51:32 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../struct.h"
-
 
 void	here_doc_open(char *del)
 {
@@ -26,11 +24,9 @@ void	here_doc_open(char *del)
 	//funzione per creare file e passaggi
 	while(1)
 	{
-		here_doc_line = readline(" |heredoc > ");
-		// stampa nel file input
+		here_doc_line = readline(" |heredoc > ");// stampa nel file input
 		if(ft_strcmp(here_doc_line, del) == 0)
 			break;
-
 		new = expand_variables(here_doc_line, true ); //funzione di chat(va cambiata)
 		write(fd, new, ft_strlen(here_doc_line));
 		write(fd, "\n", 1);
@@ -39,19 +35,25 @@ void	here_doc_open(char *del)
 	}
 }
 
-int here_doc(char *str)
+int	here_doc(char *str)
 {
-	int i = 0;
-	int k = 0;
-	int f = 0;
+	int		i;
+	int		k;
+	int		f;
+	int		boll;
+	char	del[250];
+	char	retun[250];
 
-	int boll = 1;
-	char del[250] = {0};  // Inizializza l'array
-	char retun[250] = {0};
-
+	f = 0;
+	k= 0;
+	i = 0;
+	boll = 1;
+	ft_memset(del, 0, 250);
+	ft_memset(retun, 0, 250);
 	while (str[i])
 	{
-		if (str[i] == '<' && str[i + 1] == '<') {
+		if (str[i] == '<' && str[i + 1] == '<')
+		{
 			i += 2;
 			while (str[i] && str[i] <= 32)  // Salta spazi
 				i++;
@@ -62,8 +64,10 @@ int here_doc(char *str)
 					i++;
 				del[k++] = str[i++];
 			}
-			del[k] = '\0';  // Termina la stringa
-			if (ft_strlen(del) < 1) {
+			del[k] = '\0';// Termina la stringa
+
+			if (ft_strlen(del) < 1)
+			{
 				printf("minishell: syntax error near unexpected token `newline`\n");
 				return 1;  // Errore di sintassi
 			}
@@ -73,7 +77,6 @@ int here_doc(char *str)
 		retun[f++] = str[i++];
 	}
 	retun[f] = '\0';
-	//printf("Stringa finale senza heredoc: %s\n", retun);
 	if (boll == 0)
 		here_doc_open(del);
 	return boll;

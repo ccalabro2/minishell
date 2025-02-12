@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/11 18:37:48 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:59:45 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 typedef struct s_tokenize	t_tokenize;
 typedef struct s_cmd		t_cmd;
 typedef struct s_heredoc	t_heredoc;
+typedef struct s_expander	t_expander;
 
 typedef struct s_tokenize
 {
@@ -58,6 +59,31 @@ typedef struct s_heredoc
 	char	retun[250];
 }	t_heredoc;
 
+
+
+
+
+
+
+
+typedef struct s_expander
+{
+	size_t	i;
+	size_t	j;
+	size_t	var_len;
+	char	*result;
+	char	*var_name;
+	char	*var_value;
+}	t_expander;
+
+
+
+
+
+
+
+
+
 t_cmd	parse(char **tokens);
 size_t	ft_strlen(const char	*str);
 int		main();
@@ -68,7 +94,7 @@ char	*trim_quotes(char *str);
 char	**tokenize(char *input);
 char	*ft_strdup(const char	*src);
 char	**ft_split(char const *s, char c);
-char	*expand_variables(char *line, bool global_var_enable);
+char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion);
 void	init(t_cmd *cmd);
 void	ft_space_or_operator(t_tokenize *t, char *input);
 void	ft_quote_str(t_tokenize *t, char *input);

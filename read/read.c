@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/11 17:57:35 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:35:09 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,32 @@ void	here_doc_open(char *del)
 	int		fd;
 
 	new = ft_strdup("");
-	here_doc_line = ft_strdup("");
-	fd = open("IN_HEREDOC", O_WRONLY|O_CREAT|O_APPEND, 0644);
-	//funzione per creare file e passaggi
-	while(1)
+	fd = open("IN_HEREDOC", O_WRONLY | O_CREAT | O_APPEND, 0644);
+	if (fd == -1)
 	{
-		here_doc_line = readline(" |heredoc > ");// stampa nel file input
-		if(ft_strcmp(here_doc_line, del) == 0)
-			break;
-		new = expand_variables(here_doc_line, true ); //funzione di chat(va cambiata)
-		write(fd, new, ft_strlen(here_doc_line));
-		write(fd, "\n", 1);
-		// QUANDO HAI LETTO SCRIVI NEL FILE QUELLO CHE HAI SCRITTO IN HEREDOC
-
+		perror("open");
+		return;
 	}
+	while (1)
+	{
+		here_doc_line = readline(" |heredoc > ");
+		if (!here_doc_line) // Controlla EOF (Ctrl+D)
+			break;
+		if (ft_strcmp(here_doc_line, del) == 0) // Se la riga è il delimitatore, esce
+		{
+			free(here_doc_line);
+			break;
+		}
+		// Espande variabili
+		char *expanded_line = expand_variables(here_doc_line, true, true);
+		// Scrive la riga espansa nel file
+		write(fd, expanded_line, ft_strlen(expanded_line));
+		write(fd, "\n", 1);
+		// Libera memoria
+		//free(here_doc_line);
+		//free(expanded_line);
+	}
+	close(fd);
 }
 
 int	heredoc(char *str)

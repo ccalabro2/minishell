@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/12 14:35:09 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:07:55 by goccia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	here_doc_open(char *del)
 	int		fd;
 
 	new = ft_strdup("");
+	printf("%s\n", new);
 	fd = open("IN_HEREDOC", O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/12 14:59:45 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:04:44 by goccia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,18 @@ typedef struct s_expander
 
 t_cmd	parse(char **tokens);
 size_t	ft_strlen(const char	*str);
+//size_t	count_pipe(char **matrix);
 int		main();
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_atoi(const char *str);
 int		heredoc(char *str);
-char	*trim_quotes(char *str);
+char	**pipe_splitter(char *str);
 char	**tokenize(char *input);
-char	*ft_strdup(const char	*src);
 char	**ft_split(char const *s, char c);
+char	*trim_quotes(char *str);
+char	*ft_strdup(const char	*src);
 char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion);
+void	*ft_memset(void *ptr, int value, size_t count);
 void	init(t_cmd *cmd);
 void	ft_space_or_operator(t_tokenize *t, char *input);
 void	ft_quote_str(t_tokenize *t, char *input);
@@ -104,6 +107,5 @@ void	ft_output_redirect(t_tokenize *t, char *input);
 void	ft_input_redirect(t_tokenize *t, char *input);
 void	ft_output_redirect_parse(t_cmd *cmd, char **tokens, int i);
 void	ft_input_redirect_parse(t_cmd *cmd, char **tokens, int i);
-void	*ft_memset(void *ptr, int value, size_t count);
 void	v_read();
 void	here_doc_open(char *del);

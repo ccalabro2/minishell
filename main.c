@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/10 16:30:13 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:27:49 by goccia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main()
 
 // 	if (argc != 2)
 // 		return (0);
-// 	//char	input[] = "echo 'Hello World' > file.txt << duce | wc";
+// 	//char	input[] = "echo | 'Hello World' > file.txt > | << duce | wc" |||;
 // 	//int		j;
 // 	i = 0;
 // 	/*while (tokens[i])

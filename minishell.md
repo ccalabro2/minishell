@@ -8,3 +8,12 @@ read: apre un prompt nella shell(visivamente abbiamo il nostro terminale "minish
 
 info:
 quando troviamo una pipe l'output del comando prima diventa l'imput del comando dopo
+
+
+
+
+
+
+
+13/02
+abbiamo splittato per pipe la stringa iniziale e poi abbiamo passato la matrice generata da pipe_splitter a tokenize 

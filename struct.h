@@ -6,7 +6,7 @@
 /*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/17 15:34:27 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:18:18 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,16 @@ int		ft_atoi(const char *str);
 int		heredoc(char *str, t_main *main);
 int		is_all_whitespace(const char *str);
 int		ft_cd(char **args, char **envp);
+int		ft_export(char **args, char **envp);
+int		ft_isdigit(int c);
 char	**pipe_splitter(char *str, t_main *main);
 // char	**tokenize(char *str, t_main *main);
 void 	tokenize(char *str, t_main *main);
+char	**copy_env(char **envp);
+char	**remove_env_var(char **env_copy, char *var);
 char	**ft_split(char const *s, char c);
 char	*trim_quotes(char *str);
+char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char	*src);
 char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion);
 void	*ft_memset(void *ptr, int value, size_t count);
@@ -112,3 +117,5 @@ void	ft_input_redirect_parse(t_cmd *cmd, char **tokens, int i);
 void	v_read();
 void	here_doc_open(char *del);
 void	ft_echo(char **str);
+void    ft_env(char **envp);
+void	ft_unset(char **args, char **envp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/13 16:04:44 by goccia           ###   ########.fr       */
+/*   Updated: 2025/02/17 15:34:27 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <linux/limits.h>
 
 #define MAX_LINE 1024
 #define TOKEN_MAX 1024
@@ -38,6 +39,7 @@ typedef struct s_tokenize
 	int		i;
 	int		j;
 	int		token_count;
+	int		pipe_number;
 }	t_tokenize;
 
 typedef struct s_cmd
@@ -56,15 +58,9 @@ typedef struct s_heredoc
 	int		f;
 	int		boll;
 	char	del[250];
-	char	retun[250];
+	char	*retun;
+	char    *in_file;
 }	t_heredoc;
-
-
-
-
-
-
-
 
 typedef struct s_expander
 {
@@ -76,23 +72,29 @@ typedef struct s_expander
 	char	*var_value;
 }	t_expander;
 
-
-
-
-
-
-
-
+typedef struct s_main
+{
+	t_heredoc	h;
+	t_cmd		*fun;
+	int			pipe_number;
+	bool		pipe_exist;
+	char		**env;
+	
+} t_main;
 
 t_cmd	parse(char **tokens);
 size_t	ft_strlen(const char	*str);
 //size_t	count_pipe(char **matrix);
 int		main();
+int		ft_pwd(void);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_atoi(const char *str);
-int		heredoc(char *str);
-char	**pipe_splitter(char *str);
-char	**tokenize(char *input);
+int		heredoc(char *str, t_main *main);
+int		is_all_whitespace(const char *str);
+int		ft_cd(char **args, char **envp);
+char	**pipe_splitter(char *str, t_main *main);
+// char	**tokenize(char *str, t_main *main);
+void 	tokenize(char *str, t_main *main);
 char	**ft_split(char const *s, char c);
 char	*trim_quotes(char *str);
 char	*ft_strdup(const char	*src);
@@ -109,3 +111,4 @@ void	ft_output_redirect_parse(t_cmd *cmd, char **tokens, int i);
 void	ft_input_redirect_parse(t_cmd *cmd, char **tokens, int i);
 void	v_read();
 void	here_doc_open(char *del);
+void	ft_echo(char **str);

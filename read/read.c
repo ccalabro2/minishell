@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: goccia <goccia@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/13 16:07:55 by goccia           ###   ########.fr       */
+/*   Updated: 2025/02/14 16:34:41 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,54 +48,62 @@ void	here_doc_open(char *del)
 	close(fd);
 }
 
-int	heredoc(char *str)
+int	heredoc(char *str, t_main *main)
 {
-	t_heredoc	h;
-
-	h.f = 0;
-	h.k= 0;
-	h.i = 0;
-	h.boll = 1;
-	ft_memset(h.del, 0, 250);
-	ft_memset(h.retun, 0, 250);
-	while (str[h.i])
+	main->h.f = 0;
+	main->h.k= 0;
+	main->h.i = 0;
+	main->h.boll = 1;
+	ft_memset(main->h.del, 0, 250);
+	//ft_memset(main->h.retun, 0, 250);
+	while (str[main->h.i])
 	{
-		if (str[h.i] == '<' && str[h.i + 1] == '<')
+		if (str[main->h.i] == '<' && str[main->h.i + 1] == '<')
 		{
-			h.i += 2;
-			while (str[h.i] && str[h.i] <= 32)  // Salta spazi
-				h.i++;
-			h.k = 0;  // Reset per riempire correttamente del[]
-			while (str[h.i] && str[h.i] > 32 && h.k < 249)
+			main->h.i += 2;
+			while (str[main->h.i] && str[main->h.i] <= 32)  // Salta spazi
+				main->h.i++;
+			main->h.k = 0;  // Reset per riempire correttamente del[]
+			while (str[main->h.i] && str[main->h.i] > 32 && main->h.k < 249)
 			{  // Legge il delimitatore
-				while (str[h.i] == '\"' || str[h.i] == '\'')
-					h.i++;
-				h.del[h.k++] = str[h.i++];
+				while (str[main->h.i] == '\"' || str[main->h.i] == '\'')
+					main->h.i++;
+				main->h.del[main->h.k++] = str[main->h.i++];
 			}
-			h.del[h.k] = '\0';// Termina la stringa
+			main->h.del[main->h.k] = '\0';// Termina la stringa
 
-			if (ft_strlen(h.del) < 1)
+			if (ft_strlen(main->h.del) < 1)
 			{
 				printf("minishell: syntax error near unexpected token `newline`\n");
 				return 1;  // Errore di sintassi
 			}
-			h.boll = 0;
+			main->h.boll = 0;
 			continue;  // Salta il resto del loop e evita di copiare `<< delimiter` in retun[]
 		}
-		h.retun[h.f++] = str[h.i++];
+		main->h.retun[main->h.f++] = str[main->h.i++];
 	}
-	h.retun[h.f] = '\0';
-	if (h.boll == 0)
-		here_doc_open(h.del);
-	return h.boll;
+	main->h.retun[main->h.f] = '\0';
+	if (main->h.boll == 0)
+		here_doc_open(main->h.del);
+	return main->h.boll;
 }
 
-void v_read()
+void v_read(t_main *main)
 {
-	//t_read->input = strdup("");
-	char *str = readline("Minishell > ");
+	//int i = 0;
+	//char **matrix = NULL;
+	main->h.retun = readline("Minishell > ");
+	printf("%s\n", main->h.retun);
 	// if (str)
 	//     printf("You entered: %s\n", str);
-	heredoc(str);
+	heredoc(main->h.retun, main);
+	tokenize(main->h.retun, main);
+	// while(matrix[i])
+	// {
+		
+	// 	printf("token attuale[%d]: %s\n", i, matrix[i]);
+	// 	i++;
+ 	// 	printf("next token[%d]: %s\n", i, matrix[i]);
+ 	// }
 	unlink("IN_HEREDOC");
 }

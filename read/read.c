@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/14 16:34:41 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/18 20:15:13 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	heredoc(char *str, t_main *main)
 	main->h.k= 0;
 	main->h.i = 0;
 	main->h.boll = 1;
+	main->h.retun = str; // AAA: da vedere in un secondo momento
 	ft_memset(main->h.del, 0, 250);
 	//ft_memset(main->h.retun, 0, 250);
 	while (str[main->h.i])
@@ -92,18 +93,23 @@ void v_read(t_main *main)
 {
 	//int i = 0;
 	//char **matrix = NULL;
-	main->h.retun = readline("Minishell > ");
-	printf("%s\n", main->h.retun);
-	// if (str)
-	//     printf("You entered: %s\n", str);
-	heredoc(main->h.retun, main);
-	tokenize(main->h.retun, main);
-	// while(matrix[i])
-	// {
-		
-	// 	printf("token attuale[%d]: %s\n", i, matrix[i]);
-	// 	i++;
- 	// 	printf("next token[%d]: %s\n", i, matrix[i]);
- 	// }
-	unlink("IN_HEREDOC");
+
+
+	while (1)
+	{
+		main->inputstr = readline("Minishell > ");
+		printf("%s\n", main->inputstr);
+		// if (str)
+		//     printf("You entered: %s\n", str);
+		heredoc(main->inputstr, main);
+		tokenize(main->inputstr, main);
+		// while(matrix[i])
+		// {
+
+		// 	printf("token attuale[%d]: %s\n", i, matrix[i]);
+		// 	i++;
+		// 	printf("next token[%d]: %s\n", i, matrix[i]);
+		// }
+		unlink("IN_HEREDOC");
+	}
 }

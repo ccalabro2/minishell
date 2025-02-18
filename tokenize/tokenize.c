@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/18 17:04:52 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/18 21:27:18 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,32 +84,38 @@ void print_cmd(t_cmd *cmd)
     printf("Flag: %d\n", cmd->flag);
 }
 
-// Funzione per allocare memoria per main->fun
-void build_fun(t_main *main)
+/* Funzione per allocare memoria per main->fun
+- fun e'il tipo t_cmd
+*/
+void build_cmdarray(t_main *main)
 {
-    main->fun = ft_calloc(main->pipe_number + 1, sizeof(t_cmd));
-    if (!main->fun)
+    main->cmdarray = ft_calloc(main->pipe_number + 1, sizeof(t_cmd));
+    if (!main->cmdarray)
     {
         printf("Errore: malloc fallita in build_fun\n");
         exit(EXIT_FAILURE);
     }
+    // AAA e'una lista ? ... termina con null ? ha prev e next ?
 }
 
-// Parsing della stringa in una struttura t_cmd
-void sub_string(char *str, t_cmd *fun, int index)
+/* Riceve una sottostringa e riempie il corrispondente
+elemento t_cmd del cmdarray*/
+void parser(char *str, t_cmd *elment_array, int index)
 {
+    //TODO: implementare con <  > ecc.... AAA spazio
     int i = 0;
     int k = 0;
-    char **matrix = ft_split(str, ' ');
+    char **matrix;
 
+    matrix = ft_split(str, ' ');
     if (!matrix)
     {
         printf("Errore: ft_split ha restituito NULL\n");
         return;
     }
     //int count = ft_count_words(str, ' ') + 1;
-    fun->args = malloc(sizeof(char *) * 250);
-    if (!fun->args)
+    elment_array->args = malloc(sizeof(char *) * 250);
+    if (!elment_array->args)
     {
         printf("Errore: malloc fallita per args\n");
         free(matrix);
@@ -117,40 +123,40 @@ void sub_string(char *str, t_cmd *fun, int index)
     }
     // Gestione delle pipe
     if (index > 0)
-        fun->input = PIPE_IN;
-    if (index < fun->start->pipe_number - 1)
-        fun->output = PIPE_OUT;
+        elment_array->input = PIPE_IN;
+    if (index < elment_array->start->pipe_number - 1)
+        elment_array->output = PIPE_OUT;
 
     while (matrix[i])
     {
         if (ft_strcmp(matrix[i], "<") == 0)
         {
             if (matrix[i + 1])
-                fun->input = ft_strdup(matrix[++i]);
+                elment_array->input = ft_strdup(matrix[++i]);
         }
         else if (ft_strcmp(matrix[i], ">") == 0)
         {
             if (matrix[i + 1])
             {
-                fun->output = ft_strdup(matrix[++i]);
-                fun->flag = 1;
+                elment_array->output = ft_strdup(matrix[++i]);
+                elment_array->flag = 1;
             }
         }
         else if (ft_strcmp(matrix[i], ">>") == 0)
         {
             if (matrix[i + 1])
             {
-                fun->output = ft_strdup(matrix[++i]);
-                fun->flag = 0;
+                elment_array->output = ft_strdup(matrix[++i]);
+                elment_array->flag = 0;
             }
         }
         else
-            fun->args[k++] = matrix[i];
+            elment_array->args[k++] = matrix[i];
 
         i++;
     }
-    fun->args[k] = NULL;
-    fun->command = (fun->args[0]) ? fun->args[0] : NULL;
+    elment_array->args[k] = NULL;
+    elment_array->command = (elment_array->args[0]) ? elment_array->args[0] : NULL;
     // Liberare la memoria di ft_split
     // for (int j = 0; matrix[j]; j++)
     //     free(matrix[j]);
@@ -159,23 +165,23 @@ void sub_string(char *str, t_cmd *fun, int index)
 
 
 // Funzione principale di tokenizzazione
-void tokenize(char *str, t_main *main)
+void tokenize(char *inputstr, t_main *main)
 {
-    char **input;
+    char **input_matrix;
     int i = 0;
 
-    input = pipe_splitter(str, main);
-    if (!input)
+    input_matrix = pipe_splitter(inputstr, main);
+    if (!input_matrix)
     {
         printf("Errore: pipe_splitter ha restituito NULL\n");
         return;
     }
-    build_fun(main);
+    build_cmdarray(main);
     while (i < main->pipe_number)
     {
-        main->fun[i].start = main;
-        sub_string(input[i], &main->fun[i], i);
-        print_cmd(&main->fun[i]);
+        main->cmdarray[i].start = main;
+        parser(input_matrix[i], &main->cmdarray[i], i);
+        print_cmd(&main->cmdarray[i]);
         i++;
     }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/18 17:01:17 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/18 23:49:02 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_heredoc	t_heredoc;
 typedef struct s_expander	t_expander;
 typedef struct s_main	t_main;
 
+extern int		g_exit;
+
 // typedef struct s_tokenize
 // {
 // 	char	**tokens;
@@ -51,6 +53,7 @@ typedef struct s_cmd
 	char	*command;
 	char	**args;
 	char	*input;
+	char	*path;
 	char	*output;
 	int		flag;
 	t_main	*start;
@@ -79,8 +82,9 @@ typedef struct s_expander
 
 typedef struct s_main
 {
+	char		*inputstr;
 	t_heredoc	h;
-	t_cmd		*fun;
+	t_cmd		*cmdarray; //ovviamente contempla anche un array con 1 elemento
 	int			pipe_number;
 	bool		pipe_exist;
 	char		**env;

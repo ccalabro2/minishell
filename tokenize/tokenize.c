@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/14 16:53:20 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:04:52 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 //     char **input;
 //     int x;
 //     t_tokenize t;
-    
+
 //     x = 0;
 //     input = pipe_splitter(str, main);
 //     t.token_count = 0;
 //     t.tokens = malloc(sizeof(char *) * TOKEN_MAX);
 //     if (!t.tokens)
 //         return (NULL);
-    
+
 //     while (input[x] != NULL)
 //     {
 //         // Salta segmenti vuoti o composti solo da spazi
@@ -34,7 +34,7 @@
 //         }
 //         t.i = 0;
 //         // Assumendo che t.j sia l'indice nel buffer del token corrente:
-//         t.j = 0;  
+//         t.j = 0;
 //         while (input[x][t.i])
 //         {
 //             if ((input[x][t.i] >= 9 && input[x][t.i] <= 32)
@@ -52,7 +52,7 @@
 //                 ft_else_char(&t, input[x]);
 //             t.i++;
 //         }
-//         /* Alla fine del segmento, se nel buffer c'è un token in costruzione, 
+//         /* Alla fine del segmento, se nel buffer c'è un token in costruzione,
 //            chiamalo per salvare il token corrente (es. "-l") */
 //         if (t.j > 0)
 //             ft_last_token(&t);
@@ -67,7 +67,6 @@ void print_cmd(t_cmd *cmd)
     int i = 0;
 
     printf("Command: %s\n", cmd->command ? cmd->command : "NULL");
-
     printf("Arguments: ");
     if (cmd->args)
     {
@@ -80,7 +79,6 @@ void print_cmd(t_cmd *cmd)
     else
         printf("NULL");
     printf("\n");
-
     printf("Input: %s\n", cmd->input ? cmd->input : "NULL");
     printf("Output: %s\n", cmd->output ? cmd->output : "NULL");
     printf("Flag: %d\n", cmd->flag);
@@ -89,16 +87,16 @@ void print_cmd(t_cmd *cmd)
 // Funzione per allocare memoria per main->fun
 void build_fun(t_main *main)
 {
-    main->fun = malloc((main->pipe_number * sizeof(t_cmd)) + 1);
+    main->fun = ft_calloc(main->pipe_number + 1, sizeof(t_cmd));
     if (!main->fun)
     {
-        fprintf(stderr, "Errore: malloc fallita in build_fun\n");
+        printf("Errore: malloc fallita in build_fun\n");
         exit(EXIT_FAILURE);
     }
 }
 
 // Parsing della stringa in una struttura t_cmd
-void sub_string(char *str, t_cmd *fun)
+void sub_string(char *str, t_cmd *fun, int index)
 {
     int i = 0;
     int k = 0;
@@ -106,40 +104,59 @@ void sub_string(char *str, t_cmd *fun)
 
     if (!matrix)
     {
-        fprintf(stderr, "Errore: ft_split ha restituito NULL\n");
+        printf("Errore: ft_split ha restituito NULL\n");
         return;
     }
-
-    // Allocare memoria per args
-    fun->args = malloc(sizeof(char *) * 100); // 100 argomenti massimo, cambiare se necessario
+    //int count = ft_count_words(str, ' ') + 1;
+    fun->args = malloc(sizeof(char *) * 250);
     if (!fun->args)
     {
-        fprintf(stderr, "Errore: malloc fallita per args\n");
+        printf("Errore: malloc fallita per args\n");
+        free(matrix);
         return;
     }
+    // Gestione delle pipe
+    if (index > 0)
+        fun->input = PIPE_IN;
+    if (index < fun->start->pipe_number - 1)
+        fun->output = PIPE_OUT;
 
     while (matrix[i])
     {
-        if (strcmp(matrix[i], "<") == 0 && matrix[i + 1])
-            fun->input = matrix[++i];
-        else if (strcmp(matrix[i], ">") == 0 && matrix[i + 1])
+        if (ft_strcmp(matrix[i], "<") == 0)
         {
-            fun->output = matrix[++i];
-            fun->flag = 1;
+            if (matrix[i + 1])
+                fun->input = ft_strdup(matrix[++i]);
         }
-        else if (strcmp(matrix[i], ">>") == 0 && matrix[i + 1])
+        else if (ft_strcmp(matrix[i], ">") == 0)
         {
-            fun->output = matrix[++i];
-            fun->flag = 0;
+            if (matrix[i + 1])
+            {
+                fun->output = ft_strdup(matrix[++i]);
+                fun->flag = 1;
+            }
+        }
+        else if (ft_strcmp(matrix[i], ">>") == 0)
+        {
+            if (matrix[i + 1])
+            {
+                fun->output = ft_strdup(matrix[++i]);
+                fun->flag = 0;
+            }
         }
         else
             fun->args[k++] = matrix[i];
+
         i++;
     }
-    if (fun->args[0])
-        fun->command = fun->args[0];
-    fun->args[k] = NULL; // Terminare la lista degli argomenti
+    fun->args[k] = NULL;
+    fun->command = (fun->args[0]) ? fun->args[0] : NULL;
+    // Liberare la memoria di ft_split
+    // for (int j = 0; matrix[j]; j++)
+    //     free(matrix[j]);
+    // free(matrix);
 }
+
 
 // Funzione principale di tokenizzazione
 void tokenize(char *str, t_main *main)
@@ -150,16 +167,15 @@ void tokenize(char *str, t_main *main)
     input = pipe_splitter(str, main);
     if (!input)
     {
-        fprintf(stderr, "Errore: pipe_splitter ha restituito NULL\n");
+        printf("Errore: pipe_splitter ha restituito NULL\n");
         return;
     }
-
     build_fun(main);
-
     while (i < main->pipe_number)
     {
-        sub_string(input[i], &main->fun[i]);
+        main->fun[i].start = main;
+        sub_string(input[i], &main->fun[i], i);
         print_cmd(&main->fun[i]);
-        i++; // IMPORTANTE: Incremento del contatore per evitare loop infinito
+        i++;
     }
 }

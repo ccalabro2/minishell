@@ -1,4 +1,4 @@
-#include "struct.h"
+#include "../struct.h"
 
 char **pipe_splitter(char *str, t_main *main)
 {
@@ -15,13 +15,3 @@ char **pipe_splitter(char *str, t_main *main)
 	main->pipe_number = i;
     return (matrix);
 }
-
-/*size_t count_pipe(char **matrix)
-{
-	size_t	i;
-	
-	i = 0;
-	while (matrix[i])
-		i++;
-	return(i);
-}*/

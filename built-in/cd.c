@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:06:54 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/17 15:30:16 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:08:58 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../struct.h>
+#include "../struct.h"
 
 int ft_cd(char **args, char **envp)
 {

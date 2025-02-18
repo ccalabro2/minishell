@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:06:40 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/12 15:22:44 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:12:54 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion)
 					result[j++] = '$';
 					continue;
 				}
-
 				var_name = strndup(&line[var_start], i - var_start);
 				var_value = getenv(var_name);
 				free(var_name);

@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/19 15:52:04 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:07:08 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,10 @@ char	*expand_variables(char *line, bool global_var_enable,
 void	tokenize(char *str, t_main *main);
 void	*ft_memset(void *ptr, int value, size_t count);
 void	*ft_calloc(size_t count, size_t size);
-void	v_read(void);
+void	v_read(t_main *main);
 void	here_doc_open(char *del);
 void	ft_echo(char **str);
 void	ft_env(char **envp);
 void	ft_unset(char **args, char **envp);
+void	for_short_tokenize(t_cmd *element_array, int i, char **matrix);
+void	short_tokenize(char **matrix, t_cmd *element_array);

@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:23:18 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/19 15:38:38 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/19 18:10:31 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,39 @@
 // 	printf("last token\n");
 // 	printf("j = %d\n", t->j);
 // }
+
+void	short_tokenize(char **matrix, t_cmd *element_array)
+{
+	int i;
+	int k;
+
+	k = 0;
+	i = 0;
+	if (ft_strcmp(matrix[i], "<") == 0)
+	{
+		if (matrix[i + 1])
+			element_array->input = ft_strdup(matrix[++i]);
+	}
+	else if (ft_strcmp(matrix[i], ">") == 0)
+	{
+		if (matrix[i + 1])
+		{
+			element_array->output = ft_strdup(matrix[++i]);
+			element_array->flag = 1;
+		}
+	}
+	else if (ft_strcmp(matrix[i], ">>") == 0)
+		for_short_tokenize(element_array, i, matrix);
+	else
+		element_array->args[k++] = matrix[i];
+	i++;
+}
+
+void	for_short_tokenize(t_cmd *element_array, int i, char **matrix)
+{
+	if (matrix[i + 1])
+	{
+		element_array->output = ft_strdup(matrix[++i]);
+		element_array->flag = 0;
+	}
+}

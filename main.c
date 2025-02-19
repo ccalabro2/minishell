@@ -6,17 +6,18 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/18 23:39:18 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:47:40 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 
-int g_exit = 0;
+int	g_exit = 0;
 
-int main()
+int	main(void)
 {
 	t_main	main;
+
 	v_read(&main);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_tokenize_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:23:18 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/18 15:53:33 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:38:38 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@
 // 		t->i++;
 // 	}
 // 	/*	if per interrompere quando non chiudiamo le virgolette
-// 		-trovare il modo per uscire dato che non puó returnare nulla essendo void
+// 		-trovare il modo per uscire dato che non puó...
+//		...returnare nulla essendo void
 // 	if(!input[t->i])
 // 		return;*/
 // 	printf("fine stringa\n");

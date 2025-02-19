@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/18 23:49:02 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:52:04 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <readline/history.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <fcntl.h>
 #include <linux/limits.h>
 
@@ -32,9 +33,8 @@ typedef struct s_tokenize	t_tokenize;
 typedef struct s_cmd		t_cmd;
 typedef struct s_heredoc	t_heredoc;
 typedef struct s_expander	t_expander;
-typedef struct s_main	t_main;
-
-extern int		g_exit;
+typedef struct s_main		t_main;
+extern int					g_exit;
 
 // typedef struct s_tokenize
 // {
@@ -67,7 +67,7 @@ typedef struct s_heredoc
 	int		boll;
 	char	del[250];
 	char	*retun;
-	char    *in_file;
+	char	*in_file;
 }	t_heredoc;
 
 typedef struct s_expander
@@ -89,21 +89,17 @@ typedef struct s_main
 	bool		pipe_exist;
 	char		**env;
 
-} t_main;
+}	t_main;
 
-//t_cmd	parse(char **tokens);
 size_t	ft_strlen(const char	*str);
-//size_t	count_pipe(char **matrix);
-int		main();
+int		main(void);
 int		ft_pwd(void);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_atoi(const char *str);
 int		heredoc(char *str, t_main *main);
-//int		is_all_whitespace(const char *str);
 int		ft_cd(char **args, char **envp);
 int		ft_export(char **args, char **envp);
 int		ft_isdigit(int c);
-// char	**tokenize(char *str, t_main *main);
 char	**pipe_splitter(char *str, t_main *main);
 char	**copy_env(char **envp);
 char	**remove_env_var(char **env_copy, char *var);
@@ -111,21 +107,13 @@ char	**ft_split(char const *s, char c);
 char	*trim_quotes(char *str);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char	*src);
-char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion);
-void 	tokenize(char *str, t_main *main);
+char	*expand_variables(char *line, bool global_var_enable,
+			bool allow_expansion);
+void	tokenize(char *str, t_main *main);
 void	*ft_memset(void *ptr, int value, size_t count);
-//void	init(t_cmd *cmd);
-//void	ft_space_or_operator(t_tokenize *t, char *input);
 void	*ft_calloc(size_t count, size_t size);
-//void	ft_quote_str(t_tokenize *t, char *input);
-//void	ft_else_char(t_tokenize *t, char *input);
-//void	ft_last_token(t_tokenize *t);
-//void	ft_output_redirect(t_tokenize *t, char *input);
-//void	ft_input_redirect(t_tokenize *t, char *input);
-//void	ft_output_redirect_parse(t_cmd *cmd, char **tokens, int i);
-//void	ft_input_redirect_parse(t_cmd *cmd, char **tokens, int i);
-void	v_read();
+void	v_read(void);
 void	here_doc_open(char *del);
 void	ft_echo(char **str);
-void    ft_env(char **envp);
+void	ft_env(char **envp);
 void	ft_unset(char **args, char **envp);

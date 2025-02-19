@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils_expander.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:06:40 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/18 17:12:54 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:19:42 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../struct.h"
 
-char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion)
+char	*expand_variables(char *line, bool global_var_enable,
+		bool allow_expansion)
 {
 	size_t	i;
 	size_t	j;
@@ -22,15 +23,12 @@ char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion)
 	char	*var_value;
 
 	if (!line || !global_var_enable)
-		return strdup(line);
-
+		return (strdup(line));
 	result = malloc(8192);
 	if (!result)
-		return NULL;
-
+		return (NULL);
 	i = 0;
 	j = 0;
-
 	while (line[i])
 	{
 		if (line[i] == '$' && allow_expansion)
@@ -38,8 +36,8 @@ char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion)
 			if (line[i + 1] == '?')
 			{
 				// Aggiungere un intero alla stringa
-				const char *pid_str = "0"; // Simuliamo il valore di $? come 0
-				size_t len = strlen(pid_str);
+				const char	*pid_str = "0"; // Simuliamo il valore di $? come 0
+				size_t	len = strlen(pid_str);
 				if (j + len < 8192)
 				{
 					strncpy(result + j, pid_str, len);
@@ -49,8 +47,8 @@ char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion)
 			}
 			else if (line[i + 1] == '$')
 			{
-				const char *pid_str = "1234"; // Simuliamo il pid
-				size_t len = strlen(pid_str);
+				const char	*pid_str = "1234"; // Simuliamo il pid
+				size_t	len = strlen(pid_str);
 				if (j + len < 8192)
 				{
 					strncpy(result + j, pid_str, len);
@@ -61,20 +59,18 @@ char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion)
 			else
 			{
 				i++;
-				size_t var_start = i;
+				size_t 	var_start = i;
 
 				while (line[i] && (isalnum(line[i]) || line[i] == '_'))
 					i++;
-
 				if (var_start == i)
 				{
 					result[j++] = '$';
-					continue;
+					continue ;
 				}
 				var_name = strndup(&line[var_start], i - var_start);
 				var_value = getenv(var_name);
 				free(var_name);
-
 				if (var_value)
 				{
 					var_len = strlen(var_value);
@@ -92,9 +88,8 @@ char	*expand_variables(char *line, bool global_var_enable, bool allow_expansion)
 		}
 	}
 	result[j] = '\0';
-
 	free(line);
-	return strdup(result);
+	return (strdup(result));
 }
 
 //funzione senza hardcoded ma con	UN PORCODIO DI FOR ALLA FINE

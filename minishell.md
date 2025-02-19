@@ -1,19 +1,4 @@
-ordine di come funziona mini:
-read: apre un prompt nella shell(visivamente abbiamo il nostro terminale "minishell > ...")
-    dopo aver aperto il prompt inizia minishell; due scenari:
-    1)classica gestione degli operatori (tokenize, parse ecc...)
-    2)heredoc: in questo caso utilizzeremo readline fino a quando non troverermo il del. il contenuto dell'heredoc verrá eseguito in base al comando che lo precede (es. cat, echo ecc...)
+TODO:
+dobbiamo implementare l'expander del read(utils_expander) affinché il caso $? restituisca il reale valore del pid del processo precedente invece di hardcoddare come abbiamo fatto; per farlo dovremo utilizzare la variabile globale g_exit che abbiamo gia dichiarato in struct.h
 
-(heredoc espande tutto tranne quando gli passasiamo un $env tra singoli apici es."$USER" -> "gd-auria" '$USER'-> '$USER')
-
-info:
-quando troviamo una pipe l'output del comando prima diventa l'imput del comando dopo
-
-
-
-
-
-
-
-13/02
-abbiamo splittato per pipe la stringa iniziale e poi abbiamo passato la matrice generata da pipe_splitter a tokenize 
+faremo un foglio dove scriveremo tutto quello che la shell reale fa ma che noi non abbiamo implementanto nel nostro mini seplicemente perché se avessimo dovuto replicarla alla perfezione on avremmo mai finito

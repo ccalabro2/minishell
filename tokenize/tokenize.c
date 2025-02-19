@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/18 21:27:18 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:37:35 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,126 +62,128 @@
 // }
 
 // Funzione per stampare il contenuto della struct t_cmd
-void print_cmd(t_cmd *cmd)
+void	print_cmd(t_cmd *cmd)
 {
-    int i = 0;
+	int	i;
 
-    printf("Command: %s\n", cmd->command ? cmd->command : "NULL");
-    printf("Arguments: ");
-    if (cmd->args)
-    {
-        while (cmd->args[i])
-        {
-            printf("\"%s\" ", cmd->args[i]);
-            i++;
-        }
-    }
-    else
-        printf("NULL");
-    printf("\n");
-    printf("Input: %s\n", cmd->input ? cmd->input : "NULL");
-    printf("Output: %s\n", cmd->output ? cmd->output : "NULL");
-    printf("Flag: %d\n", cmd->flag);
+	i = 0;
+	printf("Command: %s\n", cmd->command ? cmd->command : "NULL");
+	printf("Arguments: ");
+	if (cmd->args)
+	{
+		while (cmd->args[i])
+		{
+			printf("\"%s\" ", cmd->args[i]);
+			i++;
+		}
+	}
+	else
+		printf("NULL");
+	printf("\n");
+	printf("Input: %s\n", cmd->input ? cmd->input : "NULL");
+	printf("Output: %s\n", cmd->output ? cmd->output : "NULL");
+	printf("Flag: %d\n", cmd->flag);
 }
 
 /* Funzione per allocare memoria per main->fun
 - fun e'il tipo t_cmd
 */
-void build_cmdarray(t_main *main)
+void	build_cmdarray(t_main *main)
 {
-    main->cmdarray = ft_calloc(main->pipe_number + 1, sizeof(t_cmd));
-    if (!main->cmdarray)
-    {
-        printf("Errore: malloc fallita in build_fun\n");
-        exit(EXIT_FAILURE);
-    }
-    // AAA e'una lista ? ... termina con null ? ha prev e next ?
+	main->cmdarray = ft_calloc(main->pipe_number + 1, sizeof(t_cmd));
+	if (!main->cmdarray)
+	{
+		printf("Errore: malloc fallita in build_fun\n");
+		exit(EXIT_FAILURE);
+	}
+	// AAA e'una lista ? ... termina con null ? ha prev e next ?
 }
 
 /* Riceve una sottostringa e riempie il corrispondente
 elemento t_cmd del cmdarray*/
-void parser(char *str, t_cmd *elment_array, int index)
+void	parser(char *str, t_cmd *elment_array, int index)
+//TODO: implementare con <  > ecc.... AAA spazio
 {
-    //TODO: implementare con <  > ecc.... AAA spazio
-    int i = 0;
-    int k = 0;
-    char **matrix;
+	int		i;
+	int		k;
+	char	**matrix;
 
-    matrix = ft_split(str, ' ');
-    if (!matrix)
-    {
-        printf("Errore: ft_split ha restituito NULL\n");
-        return;
-    }
-    //int count = ft_count_words(str, ' ') + 1;
-    elment_array->args = malloc(sizeof(char *) * 250);
-    if (!elment_array->args)
-    {
-        printf("Errore: malloc fallita per args\n");
-        free(matrix);
-        return;
-    }
-    // Gestione delle pipe
-    if (index > 0)
-        elment_array->input = PIPE_IN;
-    if (index < elment_array->start->pipe_number - 1)
-        elment_array->output = PIPE_OUT;
-
-    while (matrix[i])
-    {
-        if (ft_strcmp(matrix[i], "<") == 0)
-        {
-            if (matrix[i + 1])
-                elment_array->input = ft_strdup(matrix[++i]);
-        }
-        else if (ft_strcmp(matrix[i], ">") == 0)
-        {
-            if (matrix[i + 1])
-            {
-                elment_array->output = ft_strdup(matrix[++i]);
-                elment_array->flag = 1;
-            }
-        }
-        else if (ft_strcmp(matrix[i], ">>") == 0)
-        {
-            if (matrix[i + 1])
-            {
-                elment_array->output = ft_strdup(matrix[++i]);
-                elment_array->flag = 0;
-            }
-        }
-        else
-            elment_array->args[k++] = matrix[i];
-
-        i++;
-    }
-    elment_array->args[k] = NULL;
-    elment_array->command = (elment_array->args[0]) ? elment_array->args[0] : NULL;
-    // Liberare la memoria di ft_split
-    // for (int j = 0; matrix[j]; j++)
-    //     free(matrix[j]);
-    // free(matrix);
+	i = 0;
+	k = 0;
+	matrix = ft_split(str, ' ');
+	if (!matrix)
+	{
+		printf("Errore: ft_split ha restituito NULL\n");
+		return ;
+	}
+	//int count = ft_count_words(str, ' ') + 1;
+	elment_array->args = malloc(sizeof(char *) * 250);
+	if (!elment_array->args)
+	{
+		printf("Errore: malloc fallita per args\n");
+		free(matrix);
+		return ;
+	}
+	// Gestione delle pipe
+	if (index > 0)
+		elment_array->input = PIPE_IN;
+	if (index < elment_array->start->pipe_number - 1)
+		elment_array->output = PIPE_OUT;
+	while (matrix[i])
+	{
+		if (ft_strcmp(matrix[i], "<") == 0)
+		{
+			if (matrix[i + 1])
+				elment_array->input = ft_strdup(matrix[++i]);
+		}
+		else if (ft_strcmp(matrix[i], ">") == 0)
+		{
+			if (matrix[i + 1])
+			{
+				elment_array->output = ft_strdup(matrix[++i]);
+				elment_array->flag = 1;
+			}
+		}
+		else if (ft_strcmp(matrix[i], ">>") == 0)
+		{
+			if (matrix[i + 1])
+			{
+				elment_array->output = ft_strdup(matrix[++i]);
+				elment_array->flag = 0;
+			}
+		}
+		else
+			elment_array->args[k++] = matrix[i];
+		i++;
+	}
+	elment_array->args[k] = NULL;
+	elment_array->command = (elment_array->args[0])
+		? elment_array->args[0] : NULL;
+	// Liberare la memoria di ft_split
+	// for (int j = 0; matrix[j]; j++)
+	//     free(matrix[j]);
+	// free(matrix);
 }
 
-
 // Funzione principale di tokenizzazione
-void tokenize(char *inputstr, t_main *main)
+void	tokenize(char *inputstr, t_main *main)
 {
-    char **input_matrix;
-    int i = 0;
+	int		i;
+	char	**input_matrix;
 
-    input_matrix = pipe_splitter(inputstr, main);
-    if (!input_matrix)
-    {
-        printf("Errore: pipe_splitter ha restituito NULL\n");
-        return;
-    }
-    build_cmdarray(main);
-    while (i < main->pipe_number)
-    {
-        main->cmdarray[i].start = main;
-        parser(input_matrix[i], &main->cmdarray[i], i);
-        print_cmd(&main->cmdarray[i]);
-        i++;
-    }
+	i = 0;
+	input_matrix = pipe_splitter(inputstr, main);
+	if (!input_matrix)
+	{
+		printf("Errore: pipe_splitter ha restituito NULL\n");
+		return ;
+	}
+	build_cmdarray(main);
+	while (i < main->pipe_number)
+	{
+		main->cmdarray[i].start = main;
+		parser(input_matrix[i], &main->cmdarray[i], i);
+		print_cmd(&main->cmdarray[i]);
+		i++;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/19 15:09:45 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:35:08 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,18 +100,23 @@ void	v_read(t_main *main)
 	matrix = NULL*/
 	while (1)
 	{
+		init_signals();
 		main->inputstr = readline("Minishell > ");
+		handle_ctrl_d(main->inputstr);
 		printf("%s\n", main->inputstr);
 		// if (str)
 		//     printf("You entered: %s\n", str);
 		heredoc(main->inputstr, main);
 		tokenize(main->inputstr, main);
+		if (main->inputstr)                        // Aggiunge alla cronologia se non vuoto
+			add_history(main->inputstr);
 		// while(matrix[i])
 		// {
 		// 	printf("token attuale[%d]: %s\n", i, matrix[i]);
 		// 	i++;
 		// 	printf("next token[%d]: %s\n", i, matrix[i]);
 		// }
+		free(main->inputstr);
 		unlink("IN_HEREDOC");
 	}
 }

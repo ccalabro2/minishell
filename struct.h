@@ -6,11 +6,12 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/19 17:32:29 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:36:01 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <signal.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -117,3 +118,7 @@ void	here_doc_open(char *del);
 void	ft_echo(char **str);
 void	ft_env(char **envp);
 void	ft_unset(char **args, char **envp);
+void	handle_sigint(int signo);
+void	init_signals(void);
+void	handle_ctrl_d(char *line);
+

@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4
+CFLAGS = -Wall -Werror -Wextra
 LDFLAGS = -lreadline -lncurses -LIBFTDIR
 LIBFTDIR = ./libft/Project1/libft.a
 
@@ -8,6 +8,7 @@ SRCS = $(wildcard *.c) \
 		$(wildcard ./read/*.c) \
 		$(wildcard ./libft/*.c) \
 		$(wildcard ./parse/*.c) \
+		$(wildcard ./signals/*.c) \
 		$(wildcard ./tokenize/*.c)
 
 

@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/20 15:14:16 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:15:50 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	print_cmd(t_cmd *cmd)
 	printf("Input: %s\n", cmd->input ? cmd->input : "NULL");
 	printf("Output: %s\n", cmd->output ? cmd->output : "NULL");
 	printf("Flag: %d\n", cmd->flag);
+	printf("\n");
 }
 
 /* Funzione per allocare memoria per main->fun
@@ -110,7 +111,7 @@ void	parser(char *str, t_cmd *elment_array, int index)
 
 	i = 0;
 	k = 0;
-	matrix = ft_split(str, ' ');
+	matrix = ft_op_split(str, ' ');
 	if (!matrix)
 	{
 		printf("Errore: ft_split ha restituito NULL\n");

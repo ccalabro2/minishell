@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/20 16:36:01 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:16:17 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int		ft_isdigit(int c);
 char	**pipe_splitter(char *str, t_main *main);
 char	**copy_env(char **envp);
 char	**remove_env_var(char **env_copy, char *var);
-char	**ft_split(char const *s, char c);
+char	**ft_op_split(char const *s, char c);
+char	**ft_pipe_split(char const *s, char c);
 char	*trim_quotes(char *str);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char	*src);

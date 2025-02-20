@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/19 17:47:39 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:32:43 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	g_exit = 0;
 int	main(void)
 {
 	t_main	main;
-
 	v_read(&main);
 }
 

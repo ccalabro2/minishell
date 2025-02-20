@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_op_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/20 19:15:27 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/20 22:58:21 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,12 @@ static int	count_words(const char *str)
 		}
 		else if (str[i] == '\"')
 		{
-			printf("soret\n");
 			i++;
 			while (str[i] != '\0' && str[i] != '\"')
 				i++;
 			if (str[i] == '\"')
 			{
-				printf("wewe\n");
 				i++;
-				if (!str[i])
-					printf("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
 				count++;
 			}
 			// else

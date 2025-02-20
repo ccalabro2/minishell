@@ -9,7 +9,8 @@ SRCS = $(wildcard *.c) \
 		$(wildcard ./libft/*.c) \
 		$(wildcard ./parse/*.c) \
 		$(wildcard ./signals/*.c) \
-		$(wildcard ./tokenize/*.c)
+		$(wildcard ./tokenize/*.c) \
+		$(wildcard ./executor/*.c)
 
 
 OBJS = $(SRCS:.c=.o)

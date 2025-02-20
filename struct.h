@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/20 19:16:17 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/20 23:24:55 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 
 #define PIPE_IN "PIPE_IN"
 #define PIPE_OUT "PIPE_OUT"
+
+#define READ_END 0
+#define WRITE_END 1
 
 typedef struct s_tokenize	t_tokenize;
 typedef struct s_cmd		t_cmd;
@@ -88,6 +91,7 @@ typedef struct s_main
 	t_cmd		*cmdarray; //ovviamente contempla anche un array con 1 elemento
 	int			pipe_number;
 	bool		pipe_exist;
+	int			**pipematrix;
 	char		**env;
 
 }	t_main;
@@ -122,4 +126,6 @@ void	ft_unset(char **args, char **envp);
 void	handle_sigint(int signo);
 void	init_signals(void);
 void	handle_ctrl_d(char *line);
+int		pipex(t_cmd *cmdarray, int pipe_number, int **pipematrix, char **env);
 
+void	generate_pipematrix(int number_pipe, t_main *main);

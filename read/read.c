@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/20 16:35:08 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/20 23:23:57 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,37 @@ int	heredoc(char *str, t_main *main)
 	return (main->h.boll);
 }
 
+
+/*
+    lettura ======== scrittura
+		0               1
+	int canale[2];
+	cnale[0] e'léstremita' di lettura
+	canale[1] estremitá di scrittura
+
+*/
+void	generate_pipematrix(int number_pipe, t_main *main)
+{
+	///perché il numero di pie e'sempre +1
+	int	i;
+
+	main->pipematrix = (int **)malloc((number_pipe - 1)* sizeof(int *));
+
+	i = 0;
+	while (i < number_pipe)
+	{
+		main->pipematrix[i] = (int *)malloc(2 * sizeof(int));
+		i++;
+	}
+	i = 0;
+	while (i < number_pipe)
+	{
+		pipe(main->pipematrix[i]);
+		i++;
+	}
+}
+
+
 void	v_read(t_main *main)
 {
 	/*int	i;
@@ -108,6 +139,20 @@ void	v_read(t_main *main)
 		//     printf("You entered: %s\n", str);
 		heredoc(main->inputstr, main);
 		tokenize(main->inputstr, main);
+
+		printf("ecco il numero delle pipe:  %d\n" , main->pipe_number);
+		if (main->pipe_number > 1)
+		{
+
+			printf("Hey! Stai per entrare in pipex\n");
+
+			generate_pipematrix(main->pipe_number, main);
+			pipex(main->cmdarray, main->pipe_number, main->pipematrix, main->env);
+
+		}
+
+
+
 		if (main->inputstr)                        // Aggiunge alla cronologia se non vuoto
 			add_history(main->inputstr);
 		// while(matrix[i])

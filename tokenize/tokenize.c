@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/20 19:15:50 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/20 23:03:46 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	print_cmd(t_cmd *cmd)
 	int	i;
 
 	i = 0;
-	printf("Command: %s\n", cmd->command ? cmd->command : "NULL");
+	printf("\nCommand: %s\n", cmd->command ? cmd->command : "NULL");
 	printf("Arguments: ");
 	if (cmd->args)
 	{

@@ -6,11 +6,40 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 14:51:50 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/19 15:44:40 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/20 23:29:33 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../struct.h"
+
+/*read stdin from the pipe*/
+void	piperead(int **pipematrix, int i)
+{
+	close(pipematrix[i - 1][WRITE_END]);
+	dup2(pipematrix[i - 1][READ_END], STDIN_FILENO);
+	close(pipematrix[i - 1][READ_END]);
+}
+
+/*write stdout in the pipe*/
+void	pipewrite(int **pipematrix, int i)
+{
+	close(pipematrix[i][READ_END]);
+	dup2(pipematrix[i][WRITE_END], STDOUT_FILENO);
+	close(pipematrix[i][WRITE_END]);
+}
+
+/*close all pipe*/
+void	pipeclose(int **pipematrix, int cmdlist_len)
+{
+	int	n;
+
+	n = -1;
+	while (++n < (cmdlist_len - 1))
+	{
+		close(pipematrix[n][READ_END]);
+		close(pipematrix[n][WRITE_END]);
+	}
+}
 
 /*Execute builtins or external command*/
 void	ft_execve(t_cmd element_array, char **env)
@@ -27,19 +56,21 @@ void	ft_execve(t_cmd element_array, char **env)
 void	handle_child_process(t_cmd *cmdarray, int pipe_number, int **pipematrix,
 		char **env, t_cmd element_array, int i, int saved_stdout)
 {
-	int		ret;
-	int		is_builtin;
+	//int		ret;
+	//int		is_builtin;
 	//t_env	**env;
-	is_builtin = 0;
+	//is_builtin = 0;
+
+	(void)saved_stdout; //aaa quando sblocchi le redirectio questo lo cancelli
 	if (i > 0)
 		piperead(pipematrix, i);
-	if (cmdarray[i])
+	if (cmdarray + i) //TODO vedere se e'corretta la i oppure e'da passare un altra variabbiiele
 		pipewrite(pipematrix, i);
 	//if (check_builtin(tmp_cmdlist) == 1) //AAAAAAa questa riga DEVE ESSERE DECOMMENTATA  E GESTITA SUCCESSIVAMEMTE
 	//	is_builtin = 1;
-	ret = ihoa_redirops(tmp_cmdlist->redirlist, saved_stdout, is_builtin); ///aaa non hai una lista di redirecton
-	if (ret == 0)
-		exit(1);
+	//ret = ihoa_redirops(tmp_cmdlist->redirlist, saved_stdout, is_builtin); ///aaa non hai una lista di redirecton
+	//if (ret == 0)
+	//	exit(1);
 	pipeclose(pipematrix, pipe_number);
 	//env = data->env;
 	ft_execve(element_array, env);
@@ -52,9 +83,9 @@ void	pipefork(t_cmd *cmdarray, int pipe_number, int **pipematrix, char **env,
 {
 	int		pid;
 	int		saved_stdout;
-	t_cmd	tmp_cmdarray;
+	//t_cmd	tmp_cmdarray;
 
-	tmp_cmdarray = element_array;
+	//tmp_cmdarray = element_array;
 	pid = fork();
 	saved_stdout = dup(STDOUT_FILENO);
 	if (pid == 0)
@@ -93,18 +124,22 @@ int	pipex(t_cmd *cmdarray, int pipe_number, int **pipematrix, char **env)
 	int		i;
 	int		j;
 	int		status;
-	t_cmd	*tmp_cmdarray;
 	//t_cmd	*tmp_cmdlist;
 	j = 0;
-	tmp_cmdarray = cmdarray;
-	if (!tmp_cmdarray)
+
+	if (!cmdarray)
 		return (0);
-	i = -1;
+	else
+	{
+		printf("ecco il comando:%s.\n", cmdarray[0].command);
+		printf("ecco il comando:%s.\n", cmdarray[1].command);
+	}
+	i = -1; //AAA vlurtare iil percorso e inseriee eventualmente j , k ecc...
 	while (++i < pipe_number) //aaa verificare lunghezza array
 	{
 		if (i > 0)
 			j++;
-		pipefork(cmdarray, pipe_number, pipematrix, env, tmp_cmdarray[j], i);
+		pipefork(cmdarray, pipe_number, pipematrix, env, cmdarray[j], i);
 	}
 	pipeclose(pipematrix, pipe_number);
 	i = 0;

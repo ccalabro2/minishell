@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/20 23:24:55 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:21:42 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,16 @@ typedef struct s_expander
 	char	*var_value;
 }	t_expander;
 
+typedef struct s_exec
+{
+	t_cmd	*cmd;
+	int			i;
+	int		pipe_stdin;
+	int		pipe_stdout;
+	int		curr_fd[2];
+	int		old_fd[2];
+}	t_exec;
+
 typedef struct s_main
 {
 	char		*inputstr;
@@ -110,7 +120,7 @@ char	**copy_env(char **envp);
 char	**remove_env_var(char **env_copy, char *var);
 char	**ft_op_split(char const *s, char c);
 char	**ft_pipe_split(char const *s, char c);
-char	*trim_quotes(char *str);
+//char	*trim_quotes(char *str);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char	*src);
 char	*expand_variables(char *line, bool global_var_enable,
@@ -126,6 +136,11 @@ void	ft_unset(char **args, char **envp);
 void	handle_sigint(int signo);
 void	init_signals(void);
 void	handle_ctrl_d(char *line);
-int		pipex(t_cmd *cmdarray, int pipe_number, int **pipematrix, char **env);
-
-void	generate_pipematrix(int number_pipe, t_main *main);
+//int		pipex(t_cmd *cmdarray, int pipe_number, int **pipematrix, char **env);
+//void	ft_execve(t_cmd *element_array, char **env);
+//void	generate_pipematrix(int number_pipe, t_main *main);
+void	std_exv(t_main *main);
+void	manage_pipe(t_exec *exec);
+void	manage_pipe_redirect_utils(t_exec *exec);
+void	manage_pipe_close_utils(t_exec *exec);
+void	init_pipe(t_exec *exec);

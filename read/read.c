@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/20 23:23:57 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:18:29 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,45 +123,43 @@ void	generate_pipematrix(int number_pipe, t_main *main)
 }
 
 
-void	v_read(t_main *main)
+void v_read(t_main *main)
 {
-	/*int	i;
-	char	**matrix;
-	i = 0;
-	matrix = NULL*/
-	while (1)
-	{
-		init_signals();
-		main->inputstr = readline("Minishell > ");
-		handle_ctrl_d(main->inputstr);
-		printf("%s\n", main->inputstr);
-		// if (str)
-		//     printf("You entered: %s\n", str);
-		heredoc(main->inputstr, main);
-		tokenize(main->inputstr, main);
+    while (1)
+    {
+        init_signals();
+        main->inputstr = readline("Minishell > ");
+        handle_ctrl_d(main->inputstr);
 
-		printf("ecco il numero delle pipe:  %d\n" , main->pipe_number);
-		if (main->pipe_number > 1)
-		{
+        printf("%s\n", main->inputstr);
 
-			printf("Hey! Stai per entrare in pipex\n");
+        // Gestione heredoc (se necessario)
+        heredoc(main->inputstr, main);
 
-			generate_pipematrix(main->pipe_number, main);
-			pipex(main->cmdarray, main->pipe_number, main->pipematrix, main->env);
+        // Tokenizzazione dell'input
+        tokenize(main->inputstr, main);
 
-		}
+        // Stampa il numero delle pipe
+        printf("Ecco il numero delle pipe: %d\n", main->pipe_number);
 
+        // Se ci sono pipe, esegui pipex
+        if (main->pipe_number > 1)
+        {
+            printf("Hey! Stai per entrare in pipex\n");
 
+            // Genera la matrice di pipe
+            //generate_pipematrix(main->pipe_number, main);
 
-		if (main->inputstr)                        // Aggiunge alla cronologia se non vuoto
-			add_history(main->inputstr);
-		// while(matrix[i])
-		// {
-		// 	printf("token attuale[%d]: %s\n", i, matrix[i]);
-		// 	i++;
-		// 	printf("next token[%d]: %s\n", i, matrix[i]);
-		// }
-		free(main->inputstr);
-		unlink("IN_HEREDOC");
-	}
+            // Esegui pipex
+            //pipex(main->cmdarray, main->pipe_number, main->pipematrix, main->env);
+        }
+
+        // Aggiungi alla cronologia se non vuoto
+        if (main->inputstr)
+            add_history(main->inputstr);
+
+        // Pulisci la memoria
+        free(main->inputstr);
+        unlink("IN_HEREDOC");
+    }
 }

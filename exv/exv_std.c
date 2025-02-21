@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:02:30 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/21 21:29:14 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/21 22:32:26 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void std_exv(t_main *core)
             }
             if (pids[i] == 0) // Processo figlio
             {
-              //  close(tools.fd[0]); LORENZO: da prendere in considerazione, con questa linea esce con cat | cat | ls MA non fa ls (il che dovrebbe)
+                close(tools.fd[0]); //LORENZO: da prendere in considerazione, con questa linea esce con cat | cat | ls MA non fa ls (il che dovrebbe)
                 signal(SIGINT, SIG_DFL);
                 signal(SIGTSTP, SIG_DFL);
                 signal(SIGQUIT, SIG_DFL);

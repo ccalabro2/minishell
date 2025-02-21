@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/20 23:03:46 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/21 22:12:21 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,23 @@ void	print_cmd(t_cmd *cmd)
 	int	i;
 
 	i = 0;
-	printf("\nCommand: %s\n", cmd->command ? cmd->command : "NULL");
-	printf("Arguments: ");
+	//printf("\nCommand: %s\n", cmd->command ? cmd->command : "NULL");
+	//printf("Arguments: ");
 	if (cmd->args)
 	{
 		while (cmd->args[i])
 		{
-			printf("\"%s\" ", cmd->args[i]);
+			//printf("\"%s\" ", cmd->args[i]);
 			i++;
 		}
 	}
 	else
 		printf("NULL");
-	printf("\n");
-	printf("Input: %s\n", cmd->input ? cmd->input : "NULL");
-	printf("Output: %s\n", cmd->output ? cmd->output : "NULL");
-	printf("Flag: %d\n", cmd->flag);
-	printf("\n");
+	//printf("\n");
+	//printf("Input: %s\n", cmd->input ? cmd->input : "NULL");
+	///printf("Output: %s\n", cmd->output ? cmd->output : "NULL");
+	//printf("Flag: %d\n", cmd->flag);
+	//printf("\n");
 }
 
 /* Funzione per allocare memoria per main->fun

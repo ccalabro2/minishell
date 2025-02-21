@@ -62,7 +62,7 @@ void built_in_decision_menager(t_exec_manager *tools)
 	if (strcmp(cmd, "echo") == 0 || strcmp(cmd, "pwd" ) == 0 || strcmp(cmd, "env" ) == 0)
 		call_exe_func_built_in_std(tools);
 	else if (strcmp(cmd, "cd") == 0)
-		ft_cd(tools->cmd->args);
+		printf("cd\n");
 	else if (strcmp(cmd, "export") == 0)
 		printf("export");
 	else if (strcmp(cmd, "unset") == 0)

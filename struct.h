@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/21 20:30:54 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:51:20 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void    builtin_export(char ***env, const char *key, const char *value);
 void    builtin_unset(char ***env, const char *key);
 void    ft_exit();
 void    ft_pwd();
-void    ft_cd(char **argv);
+void 	ft_cd(t_cmd *cmd);
 void	ft_echo(char **argv);
 
 
@@ -182,8 +182,8 @@ void	*ft_calloc(size_t count, size_t size);
 void	v_read(t_main *main);
 void	here_doc_open(char *del);
 //void	ft_echo(char **str);
-void	ft_env(char **envp);
-void	ft_unset(char **args, char **envp);
+//void	ft_env(char **envp);
+//void	ft_unset(char **args, char **envp);
 void	handle_sigint(int signo);
 void	init_signals(void);
 void	handle_ctrl_d(char *line);

@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/21 21:08:31 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/21 22:02:39 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,20 +127,30 @@ void v_read(t_main *main)
 {
     while (1)
     {
-        init_signals();
+        init_signals();  // Inizializza il gestore di segnali
         main->inputstr = readline("Minishell > ");
-        handle_ctrl_d(main->inputstr);
 
-        printf("%s\n", main->inputstr);
+        // Gestisci Ctrl + D (EOF)
+        if (main->inputstr == NULL) {
+            printf("exit\n");  // Puoi stampare un messaggio di uscita se vuoi
+            break;  // Esci dal ciclo
+        }
+
+        // Gestisci input vuoto o solo spazi
+        if (strlen(main->inputstr) == 0 || strspn(main->inputstr, " \t\n\r") == strlen(main->inputstr)) {
+            free(main->inputstr);
+            continue;  // Torna al prompt se l'input è vuoto
+        }
+
+        // Gestisci Ctrl + D (già gestito sopra), ma puoi aggiungere altre logiche qui
+        handle_ctrl_d(main->inputstr);
 
         // Gestione heredoc (se necessario)
         heredoc(main->inputstr, main);
 
         // Tokenizzazione dell'input
         tokenize(main->inputstr, main);
-		std_exv(main);
-        // Stampa il numero delle pipe
-        printf("Ecco il numero delle pipe: %d\n", main->pipe_number);
+        std_exv(main);  // Esegui i comandi (se ci sono)
 
         // Aggiungi alla cronologia se non vuoto
         if (main->inputstr)
@@ -148,6 +158,7 @@ void v_read(t_main *main)
 
         // Pulisci la memoria
         free(main->inputstr);
-        unlink("IN_HEREDOC");
+        unlink("IN_HEREDOC");  // Rimuovi il file temporaneo
     }
 }
+

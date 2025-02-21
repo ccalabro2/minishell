@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_op_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/20 22:58:21 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:26:46 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	count_words(const char *str)
 				i++;
 		}
 	}
-	printf("qui ho finito\n");
+	//printf("qui ho finito\n");
 	return (count);
 }
 

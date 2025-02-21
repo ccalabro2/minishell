@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/20 22:56:47 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:25:32 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ char	**ft_pipe_split(char const *s, char c)
 	if (!s)
 		return (0);
 	word_count = pipe_count_words(s);
-	printf("ecco il numero delle pipe: %d\n", word_count);
+	//printf("ecco il numero delle pipe: %d\n", word_count);
 	result = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (!result)
 		return (0);
@@ -135,7 +135,7 @@ char	**ft_pipe_split(char const *s, char c)
 	int l = 0;
 	while(result[l])
 	{
-		printf("ecco matrix: %s.\n",result[l]);
+		//printf("ecco matrix: %s.\n",result[l]);
 		l++;
 	}
 

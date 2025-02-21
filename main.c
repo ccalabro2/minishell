@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/20 23:13:20 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/21 20:53:27 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,48 @@
 
 int	g_exit = 0;
 
+// void start_process(t_main *core)
+// {
+//     std_read(&core->h);
+//     if (strcmp(core->h.retun, "") == 0)
+//        return;
+//     //print_read(&core->read);
+//     tokenize(core);
+//     std_exv(core);
+//     if(core->h.in_file)
+//         unlink(core->h.in_file);
+// }
+
+	// static void fork_builde(t_main *core)
+	// {
+	// 	signal(SIGINT, SIG_IGN);
+	// 	signal(SIGQUIT, SIG_IGN);
+
+	// 	// while (1)
+	// 	//     start_process(core);
+	// }
+
+void std_directory_save(t_main *core)
+{
+    core->stdin_copy = dup(STDIN_FILENO);
+    if (core->stdin_copy == -1)
+    {
+        perror("dup stdin");
+        exit(EXIT_FAILURE);
+    }
+    core->stdout_copy = dup(STDOUT_FILENO);
+    if (core->stdout_copy == -1)
+    {
+        perror("dup stdout");
+        exit(EXIT_FAILURE);
+    }
+}
+
 int	main(void)
 {
 	t_main	main;
+	//main.env = copy_env();
+	//std_directory_save(&main);
 	v_read(&main);
 }
 

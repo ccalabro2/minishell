@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:29:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/18 15:53:22 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/21 20:23:12 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,16 @@
 //     }
 //     return 1;  // È composto solo da spazi
 // }
+int	free_matrix(char **matrix)
+{
+	int	y;
+
+	y = 0;
+	while (matrix[y] != NULL)
+	{
+		free(matrix[y]);
+		y++;
+	}
+	free(matrix);
+	return (1);
+}

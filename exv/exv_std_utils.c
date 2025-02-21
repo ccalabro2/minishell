@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   exv_std_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 14:45:07 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/19 14:39:33 by ccalabro         ###   ########.fr       */
+/*   Created: 2025/01/29 18:22:52 by fluzi             #+#    #+#             */
+/*   Updated: 2025/02/21 20:19:21 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../struct.h"
 
-int	ft_pwd(void)
+void    manager_tools(t_exec_manager *tools)
 {
-	char	cwd[PATH_MAX];
-
-	if (getcwd(cwd, sizeof(cwd) == NULL))
-	{
-		perror("an error occured with pwd");
-		return (1);
-	}
-	write(1, cwd, ft_strlen(cwd));
-	write(1, "\n", 1);
-	return (0);
+	tools->pipe_std_in = -1;
+	tools->pipe_std_out = -1;
+    tools->old_fd[0] = -1;
+	tools->old_fd[1] = -1;
+    tools->fd[0] = -1;
+	tools->fd[1] = -1;
 }

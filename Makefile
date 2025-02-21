@@ -10,7 +10,10 @@ SRCS = $(wildcard *.c) \
 		$(wildcard ./parse/*.c) \
 		$(wildcard ./signals/*.c) \
 		$(wildcard ./tokenize/*.c) \
-		$(wildcard ./executor/*.c)
+		$(wildcard ./builtIn/*.c) \
+		$(wildcard ./env/*.c) \
+		$(wildcard ./exv/*.c) \
+
 
 
 OBJS = $(SRCS:.c=.o)

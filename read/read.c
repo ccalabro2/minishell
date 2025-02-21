@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/21 16:18:29 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:08:31 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,21 +138,9 @@ void v_read(t_main *main)
 
         // Tokenizzazione dell'input
         tokenize(main->inputstr, main);
-
+		std_exv(main);
         // Stampa il numero delle pipe
         printf("Ecco il numero delle pipe: %d\n", main->pipe_number);
-
-        // Se ci sono pipe, esegui pipex
-        if (main->pipe_number > 1)
-        {
-            printf("Hey! Stai per entrare in pipex\n");
-
-            // Genera la matrice di pipe
-            //generate_pipematrix(main->pipe_number, main);
-
-            // Esegui pipex
-            //pipex(main->cmdarray, main->pipe_number, main->pipematrix, main->env);
-        }
 
         // Aggiungi alla cronologia se non vuoto
         if (main->inputstr)

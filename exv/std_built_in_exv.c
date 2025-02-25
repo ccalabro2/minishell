@@ -59,7 +59,6 @@ void built_in_decision_menager(t_exec_manager *tools)
 	char	*cmd;
 
 	cmd = tools->cmd->command;
-	printf(" valore di key: {%s}, valore di value: {%s}\n", tools->cmd->args[1], tools->cmd->args[1]);
 	if (ft_strcmp(cmd, "echo") == 0 || ft_strcmp(cmd, "pwd" ) == 0 || ft_strcmp(cmd, "env" ) == 0)
 		call_exe_func_built_in_std(tools);
 	else if (ft_strcmp(cmd, "cd") == 0)

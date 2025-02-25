@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/21 21:25:32 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:11:44 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ static char	**pipe_split_words(const char *s, char **result, int pipe_count)
 				j++;
 				while(s[i] != '\0' && s[i] != '\"')
 				{
+					printf("lettera stringa tra quotes: %c\n", s[i]);
 					i++;
 					j++;
 				}
@@ -110,7 +111,7 @@ static char	**pipe_split_words(const char *s, char **result, int pipe_count)
 			i++;
 			j++;
 		}
-		result[k] = strndup(s+(i - j), j - 1); //AAA
+		result[k] = strndup(s+(i - j), j - 1);
 		k++;
 	}
 	result[k] = NULL;
@@ -122,24 +123,16 @@ char	**ft_pipe_split(char const *s, char c)
 	char	**result;
 	int		word_count;
 
-	(void)c; // Il carattere 'c' non è più usato ma mantenuto per la compatibilità.
+	(void)c;
 	if (!s)
 		return (0);
 	word_count = pipe_count_words(s);
-	//printf("ecco il numero delle pipe: %d\n", word_count);
 	result = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (!result)
 		return (0);
 	char **tmp_matrix = pipe_split_words(s, result, word_count);
-
 	int l = 0;
 	while(result[l])
-	{
-		//printf("ecco matrix: %s.\n",result[l]);
 		l++;
-	}
-
-
 	return (tmp_matrix);
-
 }

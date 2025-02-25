@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_op_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/21 21:26:46 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:34:48 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	**free_array(char **ptr, int i)
 
 static int	is_operator(char c)
 {
-	return (c == '<' || c == '>' || c == '|');
+	return (c == '<' || c == '>' || c == '|');//AAA
 }
 
 static int	count_words(const char *str)
@@ -57,13 +57,6 @@ static int	count_words(const char *str)
 				i++;
 				count++;
 			}
-			// else
-			// {
-
-
-			// 	printf("scrivimi l'altro apice \n");
-			// 	//exit(0);
-			// }
 		}
 		else
 		{
@@ -82,7 +75,19 @@ static char	*extract_word(const char *s, int *i)
 
 	start = *i;
 	while (s[*i] && !is_operator(s[*i]) && s[*i] != ' ' && s[*i] != '\t')
+	{
+		// if (s[*i] == '\"')
+		// {
+		// 	while (s[*i] != '\0' && s[*i] != '\"')
+		// 		(*i)++;
+		// 	if (s[*i] == '\"')
+		// 	{
+		// 		(*i)++;
+		// 	}
+		// }
 		(*i)++;
+
+	}
 	return (strndup(&s[start], *i - start));
 }
 

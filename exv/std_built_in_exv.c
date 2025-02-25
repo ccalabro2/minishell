@@ -49,7 +49,7 @@ void exe_func_built_in_std(t_exec_manager *tools)
 	{
 		redirect_input(tools);
 		redirect_output(tools);
-		print_env(environ);
+		print_env(tools->cmd->start->env);
 	}
 	free(cmd);
 }
@@ -59,15 +59,16 @@ void built_in_decision_menager(t_exec_manager *tools)
 	char	*cmd;
 
 	cmd = tools->cmd->command;
-	if (strcmp(cmd, "echo") == 0 || strcmp(cmd, "pwd" ) == 0 || strcmp(cmd, "env" ) == 0)
+	printf(" valore di key: {%s}, valore di value: {%s}\n", tools->cmd->args[1], tools->cmd->args[1]);
+	if (ft_strcmp(cmd, "echo") == 0 || ft_strcmp(cmd, "pwd" ) == 0 || ft_strcmp(cmd, "env" ) == 0)
 		call_exe_func_built_in_std(tools);
-	else if (strcmp(cmd, "cd") == 0)
+	else if (ft_strcmp(cmd, "cd") == 0)
 		ft_cd(tools->cmd->argc, tools->cmd->args);
-	else if (strcmp(cmd, "export") == 0)
-		printf("export");
-	else if (strcmp(cmd, "unset") == 0)
-		printf("unset");
-	else if (strcmp(cmd, "exit") == 0)
+	else if (ft_strcmp(cmd, "export") == 0)
+		builtin_export(&tools->cmd->start->env, tools->cmd->args[1]);
+	else if (ft_strcmp(cmd, "unset") == 0)
+		builtin_unset(&tools->cmd->start->env, tools->cmd->input);
+	else if (ft_strcmp(cmd, "exit") == 0)
 		ft_exit();
 	free(cmd);
 }

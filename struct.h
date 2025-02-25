@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/24 15:26:42 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/25 13:17:20 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,12 +143,14 @@ int		free_matrix(char **matrix);
 #define BUILT_IN_H
 
 void    print_env(char **env);
-void    builtin_export(char ***env, const char *key, const char *value);
-void    builtin_unset(char ***env, const char *key);
+void	builtin_export(char ***env, const char *key);
+void	builtin_unset(char ***env, const char *key);
 void    ft_exit();
 void    ft_pwd();
 void    ft_cd(int argc, char **argv);
 void	ft_echo(int argc, char **argv);
+int		set_env_value(char ***env, const char *key, const char *value);
+int		unset_env_value(char ***env, const char *key);
 
 
 size_t	ft_strlen(const char	*str);
@@ -164,7 +166,7 @@ int		heredoc(char *str, t_main *main);
 int		ft_isdigit(int c);
 char **ft_split(const char *s, char c);
 char	**pipe_splitter(char *str, t_main *main);
-//char	**copy_env(char **envp);
+char	**copy_env();
 //char	**remove_env_var(char **env_copy, char *var);
 char	**ft_op_split(char const *s, char c);
 char	**ft_pipe_split(char const *s, char c);

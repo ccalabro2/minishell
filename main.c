@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/21 20:53:27 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/25 13:17:26 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void std_directory_save(t_main *core)
     }
 }
 
-int	main(void)
+int	main()
 {
 	t_main	main;
-	//main.env = copy_env();
+	main.env = copy_env();
 	//std_directory_save(&main);
 	v_read(&main);
 }

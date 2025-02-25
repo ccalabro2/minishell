@@ -67,7 +67,7 @@ void built_in_decision_menager(t_exec_manager *tools)
 	else if (ft_strcmp(cmd, "export") == 0)
 		builtin_export(&tools->cmd->start->env, tools->cmd->args[1]);
 	else if (ft_strcmp(cmd, "unset") == 0)
-		builtin_unset(&tools->cmd->start->env, tools->cmd->input);
+		builtin_unset(&tools->cmd->start->env, tools->cmd->args[1]);
 	else if (ft_strcmp(cmd, "exit") == 0)
 		ft_exit();
 	free(cmd);

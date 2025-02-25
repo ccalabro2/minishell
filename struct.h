@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/25 13:17:20 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:06:30 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,5 +194,6 @@ void	handle_ctrl_d(char *line);
 // void	manage_pipe_redirect_utils(t_exec *exec);
 // void	manage_pipe_close_utils(t_exec *exec);
 // void	init_pipe(t_exec *exec);
+char	**ft_split_with_quotes(const char *str);
 
 #endif

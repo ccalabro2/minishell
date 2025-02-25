@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_op_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/25 15:34:48 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:34:17 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,25 @@ static char	*extract_word(const char *s, int *i)
 	start = *i;
 	while (s[*i] && !is_operator(s[*i]) && s[*i] != ' ' && s[*i] != '\t')
 	{
-		// if (s[*i] == '\"')
-		// {
-		// 	while (s[*i] != '\0' && s[*i] != '\"')
-		// 		(*i)++;
-		// 	if (s[*i] == '\"')
-		// 	{
-		// 		(*i)++;
-		// 	}
-		// }
 		(*i)++;
-
 	}
 	return (strndup(&s[start], *i - start));
 }
+
+static char	*extract_quotes(const char *s, int *i)
+{
+	int start;
+
+	start = *i;
+	(*i)++;
+	while (s[*i] && s[*i] != '\"')
+	{
+		(*i)++;
+	}
+	return (strndup(&s[start], *i - start));
+}
+
+
 
 static char	*extract_operator(const char *s, int *i)
 {
@@ -123,6 +128,11 @@ static char	**split_words(const char *s, char **result, int word_count)
 			break;
 		if (is_operator(s[i]))
 			result[k++] = extract_operator(s, &i);
+		else if (s[i] == '\"')
+		{
+			i++;
+			result[k++] = extract_quotes(s, &i);
+		}
 		else
 			result[k++] = extract_word(s, &i);
 		if (!result[k - 1])
@@ -146,3 +156,37 @@ char	**ft_op_split(char const *s, char c)
 		return (0);
 	return (split_words(s, result, word_count));
 }
+/////////////////////////////////////////////////////
+
+/*
+char	**ft_split_with_quotes(const char *str)
+{
+	char	**tokens = malloc(sizeof(char *) * 256); // Semplificazione
+	int		i = 0, k = 0, start = 0;
+	bool	in_single_quotes = false, in_double_quotes = false;
+
+	if (!tokens)
+		return (NULL);
+	while (str[i])
+	{
+		if (str[i] == '"' && !in_single_quotes) // Gestione doppi apici
+			in_double_quotes = !in_double_quotes;
+		else if (str[i] == '\'' && !in_double_quotes) // Gestione apici singoli
+			in_single_quotes = !in_single_quotes;
+		else if (str[i] == ' ' && !in_single_quotes && !in_double_quotes) // Spazio fuori apici = fine token
+		{
+			if (i > start)
+				tokens[k++] = strndup(&str[start], i - start);
+			while (str[i] == ' ') i++; // Salta spazi multipli
+			start = i;
+			continue;
+		}
+		i++;
+	}
+	if (i > start) // Ultimo token
+		tokens[k++] = strndup(&str[start], i - start);
+	tokens[k] = NULL;
+	return (tokens);
+}
+*/
+

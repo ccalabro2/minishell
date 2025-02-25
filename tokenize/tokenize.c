@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/24 15:21:21 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:16:01 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,19 +105,19 @@ elemento t_cmd del cmdarray*/
 //TODO: implementare con <  > ecc.... AAA spazio
 void	parser(char *str, t_cmd *elment_array, int index)
 {
-	int		i;
-	int		k;
+	int		i = 0;
+	int		k = 0;
 	char	**matrix;
 
-	i = 0;
-	k = 0;
+	// Usa la funzione di split originale
 	matrix = ft_op_split(str, ' ');
 	if (!matrix)
 	{
-		printf("Errore: ft_split ha restituito NULL\n");
+		printf("Errore: ft_op_split ha restituito NULL\n");
 		return ;
 	}
-	//int count = ft_count_words(str, ' ') + 1;
+
+	// Allocazione dell'array per gli argomenti
 	elment_array->args = malloc(sizeof(char *) * 250);
 	if (!elment_array->args)
 	{
@@ -125,13 +125,27 @@ void	parser(char *str, t_cmd *elment_array, int index)
 		free(matrix);
 		return ;
 	}
+
 	// Gestione delle pipe
 	if (index > 0)
 		elment_array->input = PIPE_IN;
 	if (index < elment_array->start->pipe_number - 1)
 		elment_array->output = PIPE_OUT;
+
+	// Ciclo per processare i vari token
 	while (matrix[i])
 	{
+		// Se trovi una stringa tra apici, usa il nuovo split
+		// if (matrix[i] == '\"' || matrix[i] == '\'')
+		// {
+		// 	// Gestisci la parte tra apici
+		// 	char *expanded_token = *ft_split_with_quotes(matrix[i]);  // Usa la nuova funzione
+		// 	if (expanded_token)
+		// 	{
+		// 		elment_array->args[k++] = expanded_token;
+		// 	}
+		// }
+		// Gestione delle redirezioni
 		if (ft_strcmp(matrix[i], "<") == 0)
 		{
 			if (matrix[i + 1])
@@ -153,39 +167,72 @@ void	parser(char *str, t_cmd *elment_array, int index)
 				elment_array->flag = 0;
 			}
 		}
+		// Gestione degli altri argomenti
 		else
+		{
 			elment_array->args[k++] = matrix[i];
+		}
 		i++;
 	}
+
+	// Termina l'array di argomenti
 	elment_array->args[k] = NULL;
 	elment_array->argc = k;
 	elment_array->command = (elment_array->args[0])
 		? elment_array->args[0] : "";
-	// Liberare la memoria di ft_split
+
+	// Liberare la memoria
 	// for (int j = 0; matrix[j]; j++)
 	//     free(matrix[j]);
 	// free(matrix);
 }
 
+
 // Funzione principale di tokenizzazione
+// void	tokenize(char *inputstr, t_main *main)
+// {
+// 	int		i;
+// 	char	**input_matrix;
+
+// 	i = 0;
+// 	input_matrix = pipe_splitter(inputstr, main);
+// 	if (!input_matrix)
+// 	{
+// 		printf("Errore: pipe_splitter ha restituito NULL\n");
+// 		return ;
+// 	}
+// 	build_cmdarray(main);
+// 	while (i < main->pipe_number)
+// 	{
+// 		main->cmdarray[i].start = main;
+// 		parser(input_matrix[i], &main->cmdarray[i], i);
+// 		print_cmd(&main->cmdarray[i]);
+// 		i++;
+// 	}
+// }
+
 void	tokenize(char *inputstr, t_main *main)
 {
 	int		i;
 	char	**input_matrix;
 
 	i = 0;
-	input_matrix = pipe_splitter(inputstr, main);
+	input_matrix = pipe_splitter(inputstr, main); // Separazione per pipe
 	if (!input_matrix)
 	{
 		printf("Errore: pipe_splitter ha restituito NULL\n");
 		return ;
 	}
-	build_cmdarray(main);
+	build_cmdarray(main); // Alloca cmdarray
+
 	while (i < main->pipe_number)
 	{
+		char *expanded_str = expand_variables(input_matrix[i], true, true); // 🔥 Espansione qui!
+
 		main->cmdarray[i].start = main;
-		parser(input_matrix[i], &main->cmdarray[i], i);
+		parser(expanded_str, &main->cmdarray[i], i); // Passa la stringa espansa
 		print_cmd(&main->cmdarray[i]);
+		free(expanded_str); // Libera la memoria
 		i++;
 	}
 }

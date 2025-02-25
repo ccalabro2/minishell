@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exv_std.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:02:30 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/21 22:32:26 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:43:51 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	manage_pipe_redirect_utils(t_exec_manager *tools)
 		tools->pipe_std_out = tools->fd[1];
 	}
 }
+
 void manage_pipe(t_exec_manager *tools)
 {
 	if(tools->fd[0] != -1)
@@ -56,10 +57,14 @@ void manage_pipe(t_exec_manager *tools)
 			perror("Pipe creation failed");
 			exit(EXIT_FAILURE);
 		}
-	}
+	} 
+    else 
+    {
+        tools->fd[0] = -1;
+        tools->fd[1] = -1;
+    }
 	manage_pipe_redirect_utils(tools);
 }
-
 
 void std_exv(t_main *core)
 {
@@ -117,8 +122,8 @@ void std_exv(t_main *core)
         j++;
     }
 
-    close(tools.old_fd[0]);
-    close(tools.old_fd[1]);
-    close(tools.fd[0]);
-    close(tools.fd[1]);
+    if (tools.old_fd[0] > -1) close(tools.old_fd[0]);
+    if (tools.old_fd[1] > -1) close(tools.old_fd[1]);
+    if (tools.fd[0] > -1) close(tools.fd[0]);
+    if (tools.fd[1] > -1) close(tools.fd[1]);
 }

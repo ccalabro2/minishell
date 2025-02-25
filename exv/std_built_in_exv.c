@@ -37,7 +37,7 @@ void exe_func_built_in_std(t_exec_manager *tools)
 	{
 		redirect_input(tools);
 		redirect_output(tools);
-		ft_echo(tools->cmd->args);
+		ft_echo(tools->cmd->argc,tools->cmd->args);
 	}
 	else if (strcmp(cmd, "pwd" ) == 0)
 	{
@@ -62,7 +62,7 @@ void built_in_decision_menager(t_exec_manager *tools)
 	if (strcmp(cmd, "echo") == 0 || strcmp(cmd, "pwd" ) == 0 || strcmp(cmd, "env" ) == 0)
 		call_exe_func_built_in_std(tools);
 	else if (strcmp(cmd, "cd") == 0)
-		printf("cd\n");
+		ft_cd(tools->cmd->argc, tools->cmd->args);
 	else if (strcmp(cmd, "export") == 0)
 		printf("export");
 	else if (strcmp(cmd, "unset") == 0)

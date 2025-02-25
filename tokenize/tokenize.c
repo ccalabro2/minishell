@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/21 22:12:21 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:21:21 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,9 @@ void	parser(char *str, t_cmd *elment_array, int index)
 		i++;
 	}
 	elment_array->args[k] = NULL;
+	elment_array->argc = k;
 	elment_array->command = (elment_array->args[0])
-		? elment_array->args[0] : NULL;
+		? elment_array->args[0] : "";
 	// Liberare la memoria di ft_split
 	// for (int j = 0; matrix[j]; j++)
 	//     free(matrix[j]);

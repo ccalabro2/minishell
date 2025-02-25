@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/21 22:02:39 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:18:04 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	generate_pipematrix(int number_pipe, t_main *main)
 
 void v_read(t_main *main)
 {
+	main->inputstr = ft_strdup("");
     while (1)
     {
         init_signals();  // Inizializza il gestore di segnali
@@ -149,6 +150,12 @@ void v_read(t_main *main)
         heredoc(main->inputstr, main);
 
         // Tokenizzazione dell'input
+		if (ft_strcmp(main->inputstr, "") == 0)
+		{
+			if(access("IN_HEREDOC", F_OK) == 0)
+				unlink("IN_HEREDOC");  // Rimuovi il file temporaneo
+			continue;
+		}
         tokenize(main->inputstr, main);
         std_exv(main);  // Esegui i comandi (se ci sono)
 
@@ -157,8 +164,8 @@ void v_read(t_main *main)
             add_history(main->inputstr);
 
         // Pulisci la memoria
-        free(main->inputstr);
         unlink("IN_HEREDOC");  // Rimuovi il file temporaneo
+        free(main->inputstr);
     }
 }
 

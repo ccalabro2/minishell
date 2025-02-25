@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exv_builtIn_finder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:23:24 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/21 21:50:42 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:44:39 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,22 @@ static char **built_in_finder()
 
 void execute_builtin(const t_cmd *cmd)
 {
-    if (strcmp(cmd->command, "echo") == 0) {
-        ft_echo(cmd->args);
-    } else if (strcmp(cmd->command, "cd") == 0) {
-         printf("cd \n");
-    } else if (strcmp(cmd->command, "pwd") == 0) {
+    if (ft_strcmp(cmd->command, "echo") == 0)
+        ft_echo(cmd->argc, cmd->args);
+    else if (ft_strcmp(cmd->command, "cd") == 0)
+        ft_cd(cmd->argc, cmd->args);
+    else if (ft_strcmp(cmd->command, "pwd") == 0)
         ft_pwd();
-    } else if (strcmp(cmd->command, "export") == 0) {
+    else if (ft_strcmp(cmd->command, "export") == 0)
         printf("export");
-    } else if (strcmp(cmd->command, "unset") == 0) {
+    else if (ft_strcmp(cmd->command, "unset") == 0)
         printf("unset");
-    } else if (strcmp(cmd->command, "env") == 0) {
+    else if (ft_strcmp(cmd->command, "env") == 0) 
         print_env(cmd->start->env);
-    } else if (strcmp(cmd->command, "exit") == 0) {
+    else if (ft_strcmp(cmd->command, "exit") == 0) 
         ft_exit();
-    }
 }
+
 bool is_builtin(const char *cmd)
 {
     int i;

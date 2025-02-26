@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   std_built_in_exv.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/26 15:42:43 by gd-auria          #+#    #+#             */
+/*   Updated: 2025/02/26 15:44:38 by gd-auria         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../struct.h"
 
-extern char **environ;
+extern char	**environ;
 
-void call_exe_func_built_in_std(t_exec_manager *tools)
+void	call_exe_func_built_in_std(t_exec_manager *tools)
 {
-	int         	status;
-	pid_t       	pid;
+	int		status;
+	pid_t	pid;
 
 	manage_pipe(tools);
 	pid = fork();
@@ -28,16 +40,17 @@ void call_exe_func_built_in_std(t_exec_manager *tools)
 		exit(EXIT_FAILURE);
 	manage_pipe_close_utils(tools);
 }
-void exe_func_built_in_std(t_exec_manager *tools)
+
+void	exe_func_built_in_std(t_exec_manager *tools)
 {
-	char *cmd;
+	char	*cmd;
 
 	cmd = tools->cmd->command;
 	if (strcmp(cmd, "echo") == 0)
 	{
 		redirect_input(tools);
 		redirect_output(tools);
-		ft_echo(tools->cmd->argc,tools->cmd->args);
+		ft_echo(tools->cmd->argc, tools->cmd->args);
 	}
 	else if (strcmp(cmd, "pwd" ) == 0)
 	{
@@ -54,12 +67,13 @@ void exe_func_built_in_std(t_exec_manager *tools)
 	free(cmd);
 }
 
-void built_in_decision_menager(t_exec_manager *tools)
+void	built_in_decision_menager(t_exec_manager *tools)
 {
 	char	*cmd;
 
 	cmd = tools->cmd->command;
-	if (ft_strcmp(cmd, "echo") == 0 || ft_strcmp(cmd, "pwd" ) == 0 || ft_strcmp(cmd, "env" ) == 0)
+	if (ft_strcmp(cmd, "echo") == 0 || ft_strcmp(cmd, "pwd" ) == 0
+		|| ft_strcmp(cmd, "env" ) == 0)
 		call_exe_func_built_in_std(tools);
 	else if (ft_strcmp(cmd, "cd") == 0)
 		ft_cd(tools->cmd->argc, tools->cmd->args);

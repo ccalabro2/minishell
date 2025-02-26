@@ -3,22 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/25 15:11:44 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:14:10 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../struct.h"
 
-
-
-
 static int	pipe_count_words(const char *str)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -30,13 +27,9 @@ static int	pipe_count_words(const char *str)
 			while (str[i] != '\0' && str[i] != '\"')
 				i++;
 			if (str[i] == '\"')
-			{
 				i++;
-			}
 			else
-			{
 				return (0);
-			}
 		}
 		else if (str[i] == '|')
 		{
@@ -51,36 +44,13 @@ static int	pipe_count_words(const char *str)
 
 static char	**pipe_split_words(const char *s, char **result, int pipe_count)
 {
-	int i;
-	int j;
-	int k;
+	int	i;
+	int	j;
+	int	k;
 
 	i = 0;
 	j = 0;
 	k = 0;
-
-	// while (k < pipe_count)
-	// {
-	// 	j = 0;
-	// 	while (s[i + j])
-	// 	{
-	// 		if (s[i + j] == '\"')
-	// 		{
-	// 			j++;
-	// 			while(s[i + j] != '\"' || s[i + j] != '\0')
-	// 				j++;
-	// 		}
-	// 		if (s[i + j] == '|')
-	// 		{
-	// 			j++;
-	// 			break;
-	// 		}
-	// 		j++;
-	// 	}
-	// 	i = i + j;
-	// 	if (!result[k - 1])
-	// 		return (free_array(result, k - 1));
-	// }
 	while (k < pipe_count)
 	{
 		j = 0;
@@ -90,9 +60,8 @@ static char	**pipe_split_words(const char *s, char **result, int pipe_count)
 			{
 				i++;
 				j++;
-				while(s[i] != '\0' && s[i] != '\"')
+				while (s[i] != '\0' && s[i] != '\"')
 				{
-					printf("lettera stringa tra quotes: %c\n", s[i]);
 					i++;
 					j++;
 				}
@@ -101,7 +70,7 @@ static char	**pipe_split_words(const char *s, char **result, int pipe_count)
 			{
 				i++;
 				j++;
-				break;
+				break ;
 			}
 			i++;
 			j++;
@@ -111,7 +80,7 @@ static char	**pipe_split_words(const char *s, char **result, int pipe_count)
 			i++;
 			j++;
 		}
-		result[k] = strndup(s+(i - j), j - 1);
+		result[k] = strndup(s +(i - j), j - 1);
 		k++;
 	}
 	result[k] = NULL;
@@ -121,7 +90,9 @@ static char	**pipe_split_words(const char *s, char **result, int pipe_count)
 char	**ft_pipe_split(char const *s, char c)
 {
 	char	**result;
+	char	**tmp_matrix;
 	int		word_count;
+	int		l;
 
 	(void)c;
 	if (!s)
@@ -130,9 +101,9 @@ char	**ft_pipe_split(char const *s, char c)
 	result = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (!result)
 		return (0);
-	char **tmp_matrix = pipe_split_words(s, result, word_count);
-	int l = 0;
-	while(result[l])
+	tmp_matrix = pipe_split_words(s, result, word_count);
+	l = 0;
+	while (result[l])
 		l++;
 	return (tmp_matrix);
 }

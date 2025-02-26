@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:16:59 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/19 14:55:22 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/26 13:14:31 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	else if (str[i] == '+')
-	{
 		i++;
-	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - '0');

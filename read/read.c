@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/25 16:55:09 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:32:23 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,14 @@ void	here_doc_open(char *del)
 	while (1)
 	{
 		here_doc_line = readline(" |heredoc > ");
-		if (!here_doc_line) // Controlla EOF (Ctrl+D)
+		if (!here_doc_line)
 			break ;
-		// Se la riga è il delimitatore, esce
 		if (ft_strcmp(here_doc_line, del) == 0)
 		{
 			free(here_doc_line);
 			break ;
 		}
-		// Espande variabili
 		expanded_line = expand_variables(here_doc_line, true, true);
-		// Scrive la riga espansa nel file
 		write(fd, expanded_line, ft_strlen(expanded_line));
 		write(fd, "\n", 1);
 		// Libera memoria
@@ -56,32 +53,29 @@ int	heredoc(char *str, t_main *main)
 	main->h.k = 0;
 	main->h.i = 0;
 	main->h.boll = 1;
-	main->h.retun = str; // AAA: da vedere in un secondo momento
+	main->h.retun = str;
 	ft_memset(main->h.del, 0, 250);
-	//ft_memset(main->h.retun, 0, 250);
 	while (str[main->h.i])
 	{
 		if (str[main->h.i] == '<' && str[main->h.i + 1] == '<')
 		{
 			main->h.i += 2;
-			while (str[main->h.i] && str[main->h.i] <= 32) // Salta spazi
+			while (str[main->h.i] && str[main->h.i] <= 32)
 				main->h.i++;
-			main->h.k = 0;// Reset per riempire correttamente del[]
+			main->h.k = 0;
 			while (str[main->h.i] && str[main->h.i] > 32 && main->h.k < 249)
 			{
-				// Legge il delimitatore
 				while (str[main->h.i] == '\"' || str[main->h.i] == '\'')
 					main->h.i++;
 				main->h.del[main->h.k++] = str[main->h.i++];
 			}
-			main->h.del[main->h.k] = '\0';// Termina la stringa
+			main->h.del[main->h.k] = '\0';
 			if (ft_strlen(main->h.del) < 1)
 			{
 				printf("minishell: syntax error near unexpected token `newline`\n");
-				return (1);// Errore di sintassi
+				return (1);
 			}
 			main->h.boll = 0;
-			// Salta il resto del loop e evita di copiare `<< delimiter` in retun[]
 			continue ;
 		}
 		main->h.retun[main->h.f++] = str[main->h.i++];
@@ -92,9 +86,8 @@ int	heredoc(char *str, t_main *main)
 	return (main->h.boll);
 }
 
-
 /*
-    lettura ======== scrittura
+	lettura ======== scrittura
 		0               1
 	int canale[2];
 	cnale[0] e'léstremita' di lettura
@@ -103,11 +96,9 @@ int	heredoc(char *str, t_main *main)
 */
 void	generate_pipematrix(int number_pipe, t_main *main)
 {
-	///perché il numero di pie e'sempre +1
 	int	i;
 
-	main->pipematrix = (int **)malloc((number_pipe - 1)* sizeof(int *));
-
+	main->pipematrix = (int **)malloc((number_pipe - 1) * sizeof(int *));
 	i = 0;
 	while (i < number_pipe)
 	{
@@ -122,50 +113,37 @@ void	generate_pipematrix(int number_pipe, t_main *main)
 	}
 }
 
-
-void v_read(t_main *main)
+void	v_read(t_main *main)
 {
 	main->inputstr = ft_strdup("");
-    while (1)
-    {
-        init_signals();  // Inizializza il gestore di segnali
-        main->inputstr = readline("Minishell > ");
-
-        // Gestisci Ctrl + D (EOF)
-        if (main->inputstr == NULL) {
-            printf("exit\n");  // Puoi stampare un messaggio di uscita se vuoi
-            break;  // Esci dal ciclo
-        }
-
-        // Gestisci input vuoto o solo spazi
-        if (strlen(main->inputstr) == 0 || strspn(main->inputstr, " \t\n\r") == strlen(main->inputstr)) {
-            free(main->inputstr);
-            continue;  // Torna al prompt se l'input è vuoto
-        }
-
-        // Gestisci Ctrl + D (già gestito sopra), ma puoi aggiungere altre logiche qui
-        handle_ctrl_d(main->inputstr);
-
-        // Gestione heredoc (se necessario)
-        heredoc(main->inputstr, main);
-
-        // Tokenizzazione dell'input
+	while (1)
+	{
+		init_signals();
+		main->inputstr = readline("Minishell > ");
+		if (main->inputstr == NULL)
+		{
+			printf("exit\n");
+			break ;
+		}
+		if (strlen(main->inputstr) == 0 || strspn(main->inputstr, " \t\n\r")
+			== strlen(main->inputstr))
+		{
+			free(main->inputstr);
+			continue ;
+		}
+		handle_ctrl_d(main->inputstr);
+		heredoc(main->inputstr, main);
 		if (ft_strcmp(main->inputstr, "") == 0)
 		{
-			if(access("IN_HEREDOC", F_OK) == 0)
-				unlink("IN_HEREDOC");  // Rimuovi il file temporaneo
-			continue;
+			if (access("IN_HEREDOC", F_OK) == 0)
+				unlink("IN_HEREDOC");
+			continue ;
 		}
-        tokenize(main->inputstr, main);
-        std_exv(main);  // Esegui i comandi (se ci sono)
-
-        // Aggiungi alla cronologia se non vuoto
-        if (main->inputstr)
-            add_history(main->inputstr);
-
-        // Pulisci la memoria
-        unlink("IN_HEREDOC");  // Rimuovi il file temporaneo
-        free(main->inputstr);
-    }
+		tokenize(main->inputstr, main);
+		std_exv(main);
+		if (main->inputstr)
+			add_history(main->inputstr);
+		unlink("IN_HEREDOC");
+		free(main->inputstr);
+	}
 }
-

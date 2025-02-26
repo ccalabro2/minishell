@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/26 20:21:18 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/26 21:51:40 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,6 @@ int	heredoc(char *str, t_main *main)
 	return (main->h.boll);
 }
 
-/*
-	lettura ======== scrittura
-		0               1
-	int canale[2];
-	cnale[0] e'léstremita' di lettura
-	canale[1] estremitá di scrittura
-
-*/
 void	generate_pipematrix(int number_pipe, t_main *main)
 {
 	int	i;
@@ -126,8 +118,7 @@ void	v_read(t_main *main, char **env)
 			printf("exit\n");
 			break ;
 		}
-		if (strlen(main->inputstr) == 0 || strspn(main->inputstr, " \t\n\r")
-			== strlen(main->inputstr))
+		if (strlen(main->inputstr) == 0 || strspn(main->inputstr, " \t\n\r") == strlen(main->inputstr))
 		{
 			free(main->inputstr);
 			continue ;
@@ -138,6 +129,7 @@ void	v_read(t_main *main, char **env)
 		{
 			if (access("IN_HEREDOC", F_OK) == 0)
 				unlink("IN_HEREDOC");
+			free(main->inputstr);
 			continue ;
 		}
 		tokenize(main->inputstr, main);
@@ -145,7 +137,13 @@ void	v_read(t_main *main, char **env)
 		if (main->inputstr)
 			add_history(main->inputstr);
 		unlink("IN_HEREDOC");
-		free(main->inputstr);
-		free_cmd(main->cmdarray);
+
+		// // Libero cmdarray correttamente
+		// if (main->cmdarray)  // Verifica se cmdarray è stato allocato
+		// 	free_cmd(main->cmdarray);  // Libera cmdarray (può essere un singolo puntatore o un array allocato dinamicamente)
+		// 		// Libero inputstr se è stato allocato
+		// if (main->inputstr)
+		// 	free(main->inputstr);
 	}
 }
+

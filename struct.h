@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/26 18:09:34 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/26 20:16:34 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	ft_echo(int argc, char **argv);
 void	tokenize(char *str, t_main *main);
 void	*ft_memset(void *ptr, int value, size_t count);
 void	*ft_calloc(size_t count, size_t size);
-void	v_read(t_main *main);
+void	v_read(t_main *main, char **env);
 void	here_doc_open(char *del);
 void	handle_sigint(int signo);
 void	init_signals(void);
@@ -169,5 +169,11 @@ int		is_operator(char c);
 
 ///////
 void	count_word_check(const char *str, int *i, int *count);
+void	check_parser(char ***matrix, t_cmd *elment_array, int index);
+void	check_parser_two(char **matrix, t_cmd *elment_array, int *i, int *k);
+
+//
+void	free_main(t_main *main);
+void	free_cmd(t_cmd *cmd);
 
 #endif

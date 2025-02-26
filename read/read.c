@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/26 16:32:23 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/26 20:21:18 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,12 @@ void	generate_pipematrix(int number_pipe, t_main *main)
 	}
 }
 
-void	v_read(t_main *main)
+void	v_read(t_main *main, char **env)
 {
-	main->inputstr = ft_strdup("");
+	ft_memset(main, 0, sizeof(t_main));
 	while (1)
 	{
+		main->env = env;
 		init_signals();
 		main->inputstr = readline("Minishell > ");
 		if (main->inputstr == NULL)
@@ -145,5 +146,6 @@ void	v_read(t_main *main)
 			add_history(main->inputstr);
 		unlink("IN_HEREDOC");
 		free(main->inputstr);
+		free_cmd(main->cmdarray);
 	}
 }

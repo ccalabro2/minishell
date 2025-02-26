@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 17:39:04 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/26 15:31:19 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:28:52 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ char	*create_env_entry(const char *key, const char *value)
 	char	*entry;
 	char	*temp;
 
-	printf("Crea");
 	temp = ft_strjoin(key, "=");
 	if (!temp)
 		return (NULL);

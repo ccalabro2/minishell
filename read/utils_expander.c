@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:06:40 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/26 16:33:57 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:51:54 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ char	*expand_variables(char *line, bool global_var_enable,
 	}
 	result[j] = '\0';
 	free(line);
-	return (strdup(result));
+	return (result);
 }

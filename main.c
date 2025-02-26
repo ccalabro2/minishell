@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:33:52 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/26 16:58:46 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/26 20:02:48 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ int	main(void)
 {
 	t_main	main;
 
-	main.env = copy_env();
-	v_read(&main);
+	v_read(&main, copy_env());
 }

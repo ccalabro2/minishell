@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:42:43 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/26 15:44:38 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/26 20:05:35 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	exe_func_built_in_std(t_exec_manager *tools)
 		redirect_output(tools);
 		print_env(tools->cmd->start->env);
 	}
-	free(cmd);
+	// free(cmd);
 }
 
 void	built_in_decision_menager(t_exec_manager *tools)

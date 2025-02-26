@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/26 17:11:35 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:09:34 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,9 @@ char	*extract_quotes(const char *s, int *i);
 char	*extract_word(const char *s, int *i);
 int		count_words(const char *str);
 int		is_operator(char c);
+
+
+///////
+void	count_word_check(const char *str, int *i, int *count);
 
 #endif

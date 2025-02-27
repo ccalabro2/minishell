@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/27 12:16:20 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:51:32 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	here_doc_open(char *del);
 void	handle_sigint(int signo);
 void	init_signals(void);
 void	handle_ctrl_d(char *line);
-char	**ft_split(const char *s, char c);
+char	**ft_split(char const *s, char c);
 char	**pipe_splitter(char *str, t_main *main);
 char	**ft_op_split(char const *s, char c);
 char	**ft_pipe_split(char const *s, char c);

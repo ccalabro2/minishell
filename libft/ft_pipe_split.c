@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/27 15:41:29 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:43:15 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static int	pipe_count_words(const char *str)
 	}
 	return (count);
 }
-
 
 static void	parse_segment(const char *s, int *i, int *j)
 {

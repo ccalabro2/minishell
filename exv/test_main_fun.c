@@ -6,13 +6,14 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:01:41 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/26 16:09:12 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:30:17 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../struct.h"
 
 extern char	**environ;
+
 
 char	*find_path(t_exec_manager *tools)
 {
@@ -49,6 +50,7 @@ char	*find_path(t_exec_manager *tools)
 	return (free_matrix(split_path), candidate_path);
 }
 
+
 void	redirect_input(t_exec_manager *tools)
 {
 	int	in_fd;
@@ -62,10 +64,7 @@ void	redirect_input(t_exec_manager *tools)
 		{
 			in_fd = open(tools->cmd->input, O_RDONLY);
 			if (in_fd == -1)
-			{
-				perror("Error opening input file");
-				exit(EXIT_FAILURE);
-			}
+				return (fprintf(stderr, "Err open inputf"), exit(EXIT_FAILURE));
 		}
 		if (dup2(in_fd, STDIN_FILENO) == -1)
 		{
@@ -77,6 +76,18 @@ void	redirect_input(t_exec_manager *tools)
 		if (in_fd >= 0)
 			close(in_fd);
 	}
+}
+
+static void re_out_short(t_exec_manager *tools, int *out_fd)
+{
+	if (tools->cmd->flag)
+		(*out_fd) = open(tools->cmd->output, O_WRONLY
+				| O_CREAT | O_APPEND, 0644);
+	else
+		(*out_fd) = open(tools->cmd->output, O_WRONLY
+				| O_CREAT | O_TRUNC, 0644);
+	if ((*out_fd) == -1)
+			return (fprintf(stderr, "Error opening output file"), exit(EXIT_FAILURE));
 }
 
 void	redirect_output(t_exec_manager *tools)
@@ -91,17 +102,7 @@ void	redirect_output(t_exec_manager *tools)
 			out_fd = tools->pipe_std_out;
 		else
 		{
-			if (tools->cmd->flag)
-				out_fd = open(tools->cmd->output, O_WRONLY
-						| O_CREAT | O_APPEND, 0644);
-			else
-				out_fd = open(tools->cmd->output, O_WRONLY
-						| O_CREAT | O_TRUNC, 0644);
-			if (out_fd == -1)
-			{
-				perror("Error opening output file");
-				exit(EXIT_FAILURE);
-			}
+			re_out_short(tools, &out_fd);
 		}
 		if (dup2(out_fd, STDOUT_FILENO) == -1)
 		{
@@ -141,3 +142,5 @@ void	exe_func(t_exec_manager *tools)
 	}
 	free(path);
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/26 20:20:15 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:34:31 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,8 @@ void	tokenize(char *inputstr, t_main *main)
 	}
 	free(input_matrix);
 }
-//////////////////////////////////////
 
-void	check_parser(char ***matrix, t_cmd *elment_array, int index) ///
+void	check_parser(char ***matrix, t_cmd *elment_array, int index)
 {
 	if (!matrix)
 	{
@@ -91,31 +90,30 @@ void	check_parser(char ***matrix, t_cmd *elment_array, int index) ///
 		elment_array->output = PIPE_OUT;
 }
 
-
 void	check_parser_two(char **matrix, t_cmd *elment_array, int *i, int *k)
 {
-		if (ft_strcmp(matrix[(*i)], "<") == 0)
+	if (ft_strcmp(matrix[(*i)], "<") == 0)
+	{
+		if (matrix[(*i) + 1])
+			elment_array->input = ft_strdup(matrix[++(*i)]);
+	}
+	else if (ft_strcmp(matrix[(*i)], ">") == 0)
+	{
+		if (matrix[(*i) + 1])
 		{
-			if (matrix[(*i) + 1])
-				elment_array->input = ft_strdup(matrix[++(*i)]);
+			elment_array->output = ft_strdup(matrix[++(*i)]);
+			elment_array->flag = 1;
 		}
-		else if (ft_strcmp(matrix[(*i)], ">") == 0)
+	}
+	else if (ft_strcmp(matrix[(*i)], ">>") == 0)
+	{
+		if (matrix[(*i) + 1])
 		{
-			if (matrix[(*i) + 1])
-			{
-				elment_array->output = ft_strdup(matrix[++(*i)]);
-				elment_array->flag = 1;
-			}
+			elment_array->output = ft_strdup(matrix[++(*i)]);
+			elment_array->flag = 0;
 		}
-		else if (ft_strcmp(matrix[(*i)], ">>") == 0)
-		{
-			if (matrix[(*i) + 1])
-			{
-				elment_array->output = ft_strdup(matrix[++(*i)]);
-				elment_array->flag = 0;
-			}
-		}
-		else
-			elment_array->args[(*k)++] = matrix[(*i)];
-		(*i)++;
+	}
+	else
+		elment_array->args[(*k)++] = matrix[(*i)];
+	(*i)++;
 }

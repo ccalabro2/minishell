@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:10:18 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/26 18:09:04 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:36:52 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	count_word_check(const char *str, int *i, int *count)
 	else
 	{
 		(*count)++;
-		while (str[*i] && !is_operator(str[*i]) && str[*i] != ' ' && str[*i] != '\t')
+		while (str[*i] && !is_operator(str[*i])
+			&& str[*i] != ' ' && str[*i] != '\t')
 			(*i)++;
 	}
 }

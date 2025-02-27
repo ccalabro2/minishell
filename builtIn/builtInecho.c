@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:35:03 by lukan             #+#    #+#             */
-/*   Updated: 2025/02/27 12:12:29 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:42:13 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,13 @@ void	ft_echo(int argc, char **argv)
 	}
 	while (i < argc)
 	{
-		clean_arg = remove_quotes(argv[i]);
+		clean_arg = argv[i];
 		if (!clean_arg)
 			return (fprintf(stderr, "Memory error\n"), exit(EXIT_FAILURE));
 		printf("%s\n", clean_arg);
 		free(clean_arg);
-		if (++i < argc)
+		i++;
+		if (i < argc)
 			write(1, " ", 1);
 	}
 	if (!newline)

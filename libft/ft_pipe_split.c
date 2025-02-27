@@ -6,40 +6,49 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/27 11:54:21 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:41:29 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../struct.h"
 
+static int	handle_quotes(const char *str, int *i)
+{
+	(*i)++;
+	while (str[*i] && str[*i] != '\"')
+		(*i)++;
+	if (str[*i] == '\"')
+		(*i)++;
+	else
+		return (0);
+	return (1);
+}
+
 static int	pipe_count_words(const char *str)
 {
 	int	i;
 	int	count;
+
 	i = 0;
-	count = 0;
+	count = 1;
 	while (str[i])
 	{
-		if (str[i] == '"')
+		if (str[i] == '\"')
 		{
-			i++;
-			while (str[i] != '\0' && str[i] != '"')
-				i++;
-			if (str[i] == '"')
-				i++;
-			else
+			if (!handle_quotes(str, &i))
 				return (0);
 		}
 		else if (str[i] == '|')
 		{
-			i++;
 			count++;
+			i++;
 		}
 		else
 			i++;
 	}
-	return (count + 1);
+	return (count);
 }
+
 
 static void	parse_segment(const char *s, int *i, int *j)
 {

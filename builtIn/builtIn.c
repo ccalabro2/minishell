@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:55:52 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/26 15:06:55 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:59:22 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,35 @@
 
 void	ft_exit(void)
 {
-	exit(127);
+	exit(g_exit);
+}
+
+static void cd_short(char *cwd, char *oldpwd, char *path)
+{
+    if (!oldpwd)
+    {
+        return(printf("getcwd\n"), exit(EXIT_FAILURE));
+    }
+    if (chdir(path) == -1)
+    {
+        fprintf(stderr, "cd: %s: %s\n", path, strerror(errno));
+        free(oldpwd);
+        return;
+    }
+    if (setenv("OLDPWD", oldpwd, 1) == -1)
+    {
+        free(oldpwd);
+        printf("setenv OLDPWD\n");
+        exit(EXIT_FAILURE);
+    }
+    free(oldpwd);
+    if (getcwd(cwd, 1024) == NULL)
+        return(printf("getcwd\n"), exit(EXIT_FAILURE));
+    if (setenv("PWD", cwd, 1) == -1)
+    {
+        printf("setenv PWD\n");
+        exit(EXIT_FAILURE);
+    }
 }
 
 void	ft_cd(int argc, char **argv)
@@ -27,10 +55,7 @@ void	ft_cd(int argc, char **argv)
 	{
 		path = getenv("HOME");
 		if (!path)
-		{
-			fprintf(stderr, "cd: HOME not set\n");
-			return ;
-		}
+			return (printf("cd: HOME not set\n"), exit(EXIT_FAILURE));
 	}
 	else
 	{
@@ -39,42 +64,12 @@ void	ft_cd(int argc, char **argv)
 		{
 			path = getenv("OLDPWD");
 			if (!path)
-			{
-				fprintf(stderr, "cd: OLDPWD not set\n");
-				return ;
-			}
+				return (printf("d: OLDPWD not set\n"), exit(EXIT_FAILURE));
 			printf("%s\n", path);
 		}
 	}
 	oldpwd = getcwd(NULL, 0);
-	if (!oldpwd)
-	{
-		perror("getcwd");
-		return ;
-	}
-	if (chdir(path) == -1)
-	{
-		fprintf(stderr, "cd: %s: %s\n", path, strerror(errno));
-		free(oldpwd);
-		return ;
-	}
-	if (setenv("OLDPWD", oldpwd, 1) == -1)
-	{
-		perror("setenv OLDPWD");
-		free(oldpwd);
-		return ;
-	}
-	free(oldpwd);
-	if (getcwd(cwd, sizeof(cwd)) == NULL)
-	{
-		perror("getcwd");
-		return ;
-	}
-	if (setenv("PWD", cwd, 1) == -1)
-	{
-		perror("setenv PWD");
-		return ;
-	}
+	cd_short(cwd, oldpwd, path);
 }
 
 void	ft_pwd(void)

@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/26 21:51:40 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:35:16 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	heredoc(char *str, t_main *main)
 			main->h.del[main->h.k] = '\0';
 			if (ft_strlen(main->h.del) < 1)
 			{
-				printf("minishell: syntax error near unexpected token `newline`\n");
+				printf("minishell: syntax error near unexpected token n\n");
 				return (1);
 			}
 			main->h.boll = 0;
@@ -118,7 +118,8 @@ void	v_read(t_main *main, char **env)
 			printf("exit\n");
 			break ;
 		}
-		if (strlen(main->inputstr) == 0 || strspn(main->inputstr, " \t\n\r") == strlen(main->inputstr))
+		if (strlen(main->inputstr) == 0 || strspn(main->inputstr, " \t\n\r")
+			== strlen(main->inputstr))
 		{
 			free(main->inputstr);
 			continue ;
@@ -137,7 +138,6 @@ void	v_read(t_main *main, char **env)
 		if (main->inputstr)
 			add_history(main->inputstr);
 		unlink("IN_HEREDOC");
-
 		// // Libero cmdarray correttamente
 		// if (main->cmdarray)  // Verifica se cmdarray è stato allocato
 		// 	free_cmd(main->cmdarray);  // Libera cmdarray (può essere un singolo puntatore o un array allocato dinamicamente)

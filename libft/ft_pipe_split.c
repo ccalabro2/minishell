@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/27 11:34:27 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:54:21 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,31 @@ static int	pipe_count_words(const char *str)
 	return (count + 1);
 }
 
+static void	parse_segment(const char *s, int *i, int *j)
+{
+	*j = 0;
+	while (s[*i])
+	{
+		if (s[*i] == '\"')
+		{
+			(*i)++;
+			(*j)++;
+			while (s[*i] && s[*i] != '\"')
+			{
+				(*i)++;
+				(*j)++;
+			}
+		}
+		if (s[*i] == '|')
+		{
+			(*i)++;
+			(*j)++;
+			break ;
+		}
+		(*i)++;
+		(*j)++;
+	}
+}
 
 static char	**pipe_split_words(const char *s, char **result, int pipe_count)
 {
@@ -53,28 +78,7 @@ static char	**pipe_split_words(const char *s, char **result, int pipe_count)
 	k = 0;
 	while (k < pipe_count)
 	{
-		j = 0;
-		while (s[i])
-		{
-			if (s[i] == '\"')
-			{
-				i++;
-				j++;
-				while (s[i] != '\0' && s[i] != '\"')
-				{
-					i++;
-					j++;
-				}
-			}
-			if (s[i] == '|')
-			{
-				i++;
-				j++;
-				break ;
-			}
-			i++;
-			j++;
-		}
+		parse_segment(s, &i, &j);
 		if (s[i] == '\0')
 		{
 			i++;

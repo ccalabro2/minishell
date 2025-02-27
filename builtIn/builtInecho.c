@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtInecho.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:35:03 by lukan             #+#    #+#             */
-/*   Updated: 2025/02/27 15:42:13 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:27:04 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_echo(int argc, char **argv)
 	bool	newline;
 	int		i;
 	char	*clean_arg;
+
 
 	i = 1;
 	newline = true;

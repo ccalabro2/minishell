@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/27 15:34:31 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:45:17 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,21 @@ void	parser(char *str, t_cmd *elment_array, int index)
 
 	k = 0;
 	i = 0;
+	printf("zzzzz: %s.\n", str);
 	matrix = ft_op_split(str, ' ');
+	int z = 0;
+	while (matrix[z])
+	{
+		printf("ggggggg: %s.\n", matrix[z]);
+		z++;		
+	}
 	check_parser(&matrix, elment_array, index);
 	while (matrix[i])
+	{
+		printf("aaaaaaaa: %s.\n", matrix[i]);
 		check_parser_two(matrix, elment_array, &i, &k);
+		
+	}
 	elment_array->args[k] = NULL;
 	elment_array->argc = k;
 	if (elment_array->args[0])
@@ -65,11 +76,20 @@ void	tokenize(char *inputstr, t_main *main)
 		free(expanded_str);
 		i++;
 	}
+	int t = 0;
+	while (main->cmdarray->args[t])
+	{
+		printf("%s.\n", main->cmdarray->args[t]);
+
+
+		t++;
+	}
 	free(input_matrix);
 }
 
 void	check_parser(char ***matrix, t_cmd *elment_array, int index)
 {
+	
 	if (!matrix)
 	{
 		printf("Errore: ft_op_split ha restituito NULL\n");

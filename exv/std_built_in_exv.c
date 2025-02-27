@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:42:43 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/26 20:05:35 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:16:25 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,27 @@ void	built_in_decision_menager(t_exec_manager *tools)
 	char	*cmd;
 
 	cmd = tools->cmd->command;
-	if (ft_strcmp(cmd, "echo") == 0 || ft_strcmp(cmd, "pwd" ) == 0
-		|| ft_strcmp(cmd, "env" ) == 0)
+	if (ft_strcmp(cmd, "echo") == 0 || ft_strcmp(cmd, "pwd") == 0
+		|| ft_strcmp(cmd, "env") == 0)
 		call_exe_func_built_in_std(tools);
 	else if (ft_strcmp(cmd, "cd") == 0)
 		ft_cd(tools->cmd->argc, tools->cmd->args);
 	else if (ft_strcmp(cmd, "export") == 0)
-		builtin_export(&tools->cmd->start->env, tools->cmd->args[1]);
+	{
+		if (tools->cmd->argc > 1) // Verifica che ci sia almeno un argomento
+			builtin_export(&tools->cmd->start->env, tools->cmd->args[1]);
+		else
+			fprintf(stderr, "export: not enough arguments\n");
+	}
 	else if (ft_strcmp(cmd, "unset") == 0)
-		builtin_unset(&tools->cmd->start->env, tools->cmd->args[1]);
+	{
+		if (tools->cmd->argc > 1) // Verifica che ci sia almeno un argomento
+			builtin_unset(&tools->cmd->start->env, tools->cmd->args[1]);
+		else
+			fprintf(stderr, "unset: not enough arguments\n");
+	}
 	else if (ft_strcmp(cmd, "exit") == 0)
 		ft_exit();
 	free(cmd);
 }
+

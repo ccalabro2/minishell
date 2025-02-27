@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 01:05:34 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/26 17:14:10 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:34:27 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,16 @@ static int	pipe_count_words(const char *str)
 {
 	int	i;
 	int	count;
-
 	i = 0;
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] == '\"')
+		if (str[i] == '"')
 		{
 			i++;
-			while (str[i] != '\0' && str[i] != '\"')
+			while (str[i] != '\0' && str[i] != '"')
 				i++;
-			if (str[i] == '\"')
+			if (str[i] == '"')
 				i++;
 			else
 				return (0);
@@ -41,6 +40,7 @@ static int	pipe_count_words(const char *str)
 	}
 	return (count + 1);
 }
+
 
 static char	**pipe_split_words(const char *s, char **result, int pipe_count)
 {

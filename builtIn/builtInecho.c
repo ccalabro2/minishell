@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:35:03 by lukan             #+#    #+#             */
-/*   Updated: 2025/02/26 15:21:06 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:12:29 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,18 @@ void	ft_echo(int argc, char **argv)
 	{
 		clean_arg = remove_quotes(argv[i]);
 		if (!clean_arg)
-		{
-			fprintf(stderr, "Memory allocation error\n");
-			return ;
-		}
-		printf("%s", clean_arg);
+			return (fprintf(stderr, "Memory error\n"), exit(EXIT_FAILURE));
+		printf("%s\n", clean_arg);
 		free(clean_arg);
-		i++;
-		if (i < argc)
-			printf(" ");
+		if (++i < argc)
+			write(1, " ", 1);
 	}
-	if (newline)
-		printf("\n");
-	return ;
+	if (!newline)
+		write(1, "\n", 1);
 }
+
+
+
+
+
+

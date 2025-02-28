@@ -3,38 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/27 13:51:32 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:18:38 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
-# include <unistd.h>
-# include <signal.h>
-# include <stdlib.h>
-# include <string.h>
-# include <stdio.h>
-# include <stdbool.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <sys/wait.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <linux/limits.h>
+// #ifndef BUILTIN_H
+// # define BUILTIN_H
 
-# define MAX_LINE 1024
-# define TOKEN_MAX 1024
+#include <unistd.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <linux/limits.h>
 
-# define PIPE_IN "PIPE_IN"
-# define PIPE_OUT "PIPE_OUT"
+#define MAX_LINE 1024
+#define TOKEN_MAX 1024
 
-# define READ_END 0
-# define WRITE_END 1
+#define PIPE_IN "PIPE_IN"
+#define PIPE_OUT "PIPE_OUT"
+
+#define READ_END 0
+#define WRITE_END 1
 
 typedef struct s_tokenize	t_tokenize;
 typedef struct s_cmd		t_cmd;
@@ -165,15 +166,9 @@ char	*extract_quotes(const char *s, int *i);
 char	*extract_word(const char *s, int *i);
 int		count_words(const char *str);
 int		is_operator(char c);
-
-
-///////
 void	count_word_check(const char *str, int *i, int *count);
 void	check_parser(char ***matrix, t_cmd *elment_array, int index);
 void	check_parser_two(char **matrix, t_cmd *elment_array, int *i, int *k);
-
-//
 void	free_main(t_main *main);
 void	free_cmd(t_cmd *cmd);
-
-#endif
+// #endif

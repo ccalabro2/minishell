@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:02:30 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/27 15:51:44 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:54:42 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,7 @@ void	std_exv(t_main *core)
 			manage_pipe(&tools);
 			pids[i] = fork();
 			if (pids[i] == -1)
-			{
-				perror("Fork failed");
-				exit(EXIT_FAILURE);
-			}
+				return (printf("Fork failed"), exit(EXIT_FAILURE));
 			if (pids[i] == 0)
 			{
 				close(tools.fd[0]);

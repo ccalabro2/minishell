@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:42:43 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/27 15:05:35 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:57:40 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	exe_func_built_in_std(t_exec_manager *tools)
 		redirect_output(tools);
 		print_env(tools->cmd->start->env);
 	}
-	// free(cmd);
 }
 
 void	built_in_decision_menager(t_exec_manager *tools)
@@ -79,14 +78,14 @@ void	built_in_decision_menager(t_exec_manager *tools)
 		ft_cd(tools->cmd->argc, tools->cmd->args);
 	else if (ft_strcmp(cmd, "export") == 0)
 	{
-		if (tools->cmd->argc > 1) // Verifica che ci sia almeno un argomento
+		if (tools->cmd->argc > 1)
 			builtin_export(&tools->cmd->start->env, tools->cmd->args[1]);
 		else
 			fprintf(stderr, "export: not enough arguments\n");
 	}
 	else if (ft_strcmp(cmd, "unset") == 0)
 	{
-		if (tools->cmd->argc > 1) // Verifica che ci sia almeno un argomento
+		if (tools->cmd->argc > 1)
 			builtin_unset(&tools->cmd->start->env, tools->cmd->args[1]);
 		else
 			fprintf(stderr, "unset: not enough arguments\n");
@@ -95,4 +94,3 @@ void	built_in_decision_menager(t_exec_manager *tools)
 		ft_exit();
 	free(cmd);
 }
-

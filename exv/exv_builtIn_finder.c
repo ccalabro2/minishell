@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:23:24 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/27 16:11:01 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:52:19 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ bool	is_builtin(const char *cmd)
 		return (true);
 	return (false);
 }
-

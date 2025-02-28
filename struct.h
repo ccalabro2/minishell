@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/28 12:43:24 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 14:58:34 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,9 @@ char	*get_env_value(char **env, const char *key);
 char	*create_env_entry(const char *key, const char *value);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strchr(const char *str, int c);
+char	*ft_strncpy(char *dst, const char *src, size_t n);
 char	*ft_itoa(int n);
+char	*ft_strndup(const char *s, size_t n);
 char	*ft_strdup(const char	*src);
 char	*expand_variables(char *line, bool global_var_enable,
 			bool allow_expansion);

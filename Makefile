@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -gdwarf-4
+CFLAGS = -Wall -Werror -Wextra
 LDFLAGS = -lreadline -lncurses -LIBFTDIR
 LIBFTDIR = ./libft/Project1/libft.a
 

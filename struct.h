@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/28 19:02:19 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:26:13 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,6 @@ int		heredoc(char *str, t_main *main);
 int		ft_isdigit(int c);
 int		new_env_value(char ***env, const char *key,
 			const char *value, size_t len);
-//ft_op_split.c
 char	**split_words(const char *s, char **result, int word_count);
 char	**free_array(char **ptr, int i);
 char	*extract_operator(const char *s, int *i);
@@ -203,4 +202,7 @@ void	ass_close(t_exec_manager *tools);
 void	inizialize_path(t_f_path *pather);
 void	inizialize_heredoc(char *str, t_main *main);
 void	bob(t_main *main);
+void	last_fun(t_main *main);
+void	prompt(t_main *main, char **env);
+void	shortp(t_main *main);
 // #endif

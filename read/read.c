@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/28 19:02:14 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:35:46 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,7 @@ void	v_read(t_main *main, char **env)
 	ft_memset(main, 0, sizeof(t_main));
 	while (1)
 	{
-		main->env = env;
-		init_signals();
-		main->inputstr = readline("Minishell > ");
+		prompt(main, env);
 		if (main->inputstr == NULL)
 		{
 			printf("exit\n");
@@ -108,8 +106,7 @@ void	v_read(t_main *main, char **env)
 			free(main->inputstr);
 			continue ;
 		}
-		handle_ctrl_d(main->inputstr);
-		heredoc(main->inputstr, main);
+		shortp(main);
 		if (ft_strcmp(main->inputstr, "") == 0)
 		{
 			if (access("IN_HEREDOC", F_OK) == 0)
@@ -117,10 +114,6 @@ void	v_read(t_main *main, char **env)
 			free(main->inputstr);
 			continue ;
 		}
-		tokenize(main->inputstr, main);
-		std_exv(main);
-		if (main->inputstr)
-			add_history(main->inputstr);
-		unlink("IN_HEREDOC");
+		last_fun(main);
 	}
 }

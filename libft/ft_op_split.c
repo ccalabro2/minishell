@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:14:57 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/28 12:01:18 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:52:10 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ char	**split_words(const char *s, char **result, int word_count)
 		if (!result[k - 1])
 			return (free_array(result, k - 1));
 	}
-	result[k] = NULL;
-	return (result);
+	return ((result[k] = NULL), result);
 }
 
 char	**ft_op_split(char const *s, char c)

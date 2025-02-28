@@ -1,1 +1,2 @@
-ciao gd-auria /nfs/homes/gd-auria/bin:/nfs/homes/gd-auria/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/nfs/homes/gd-auria/.dotnet/tools
+pio
+ciao

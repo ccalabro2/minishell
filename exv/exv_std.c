@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:02:30 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/28 11:54:42 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:35:08 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,36 +78,10 @@ void	std_exv(t_main *core)
 	i = 0;
 	pids = malloc(core->pipe_number * sizeof(pid_t));
 	if (!core || core->pipe_number <= 0 || !core->cmdarray)
-	{
-		fprintf(stderr, "Invalid core structure\n");
-		exit(EXIT_FAILURE);
-	}
+		return (printf("Invalid core structru\n"), exit(EXIT_FAILURE));
 	manager_tools(&tools);
 	while (i < core->pipe_number)
-	{
-		tools.cmd = &core->cmdarray[i];
-		tools.index = i;
-		if (is_builtin(core->cmdarray[i].command))
-			built_in_decision_menager(&tools);
-		else
-		{
-			manage_pipe(&tools);
-			pids[i] = fork();
-			if (pids[i] == -1)
-				return (printf("Fork failed"), exit(EXIT_FAILURE));
-			if (pids[i] == 0)
-			{
-				close(tools.fd[0]);
-				signal(SIGINT, SIG_DFL);
-				signal(SIGTSTP, SIG_DFL);
-				signal(SIGQUIT, SIG_DFL);
-				exe_func(&tools);
-				exit(EXIT_FAILURE);
-			}
-		}
-		manage_pipe_close_utils(&tools);
-		i++;
-	}
+		f_while(&tools, core, pids, &i);
 	j = 0;
 	while (j < core->pipe_number)
 	{
@@ -118,13 +92,14 @@ void	std_exv(t_main *core)
 			g_exit = 128 + WTERMSIG(status);
 		j++;
 	}
-	if (tools.old_fd[0] > -1)
-		close(tools.old_fd[0]);
-	if (tools.old_fd[1] > -1)
-		close(tools.old_fd[1]);
-	if (tools.fd[0] > -1)
-		close(tools.fd[0]);
-	if (tools.fd[1] > -1)
-		close(tools.fd[1]);
+	// if (tools.old_fd[0] > -1)
+	// 	close(tools.old_fd[0]);
+	// if (tools.old_fd[1] > -1)
+	// 	close(tools.old_fd[1]);
+	// if (tools.fd[0] > -1)
+	// 	close(tools.fd[0]);
+	// if (tools.fd[1] > -1)
+	// 	close(tools.fd[1]);
+	ass_close(&tools);
 	free(pids);
 }

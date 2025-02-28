@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/28 14:58:34 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:35:40 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,4 +186,7 @@ void	check_parser(char ***matrix, t_cmd *elment_array, int index);
 void	check_parser_two(char **matrix, t_cmd *elment_array, int *i, int *k);
 void	free_main(t_main *main);
 void	free_cmd(t_cmd *cmd);
+void	else_std_exv(t_exec_manager *tools, pid_t *pids, int *i);
+void	f_while(t_exec_manager *tools, t_main *core, pid_t *pids, int *i);
+void	ass_close(t_exec_manager *tools);
 // #endif

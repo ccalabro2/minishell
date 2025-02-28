@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/28 12:18:38 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 12:43:24 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_cmd		t_cmd;
 typedef struct s_heredoc	t_heredoc;
 typedef struct s_expander	t_expander;
 typedef struct s_main		t_main;
+typedef struct s_exp_var	t_exp_var;
 extern int					g_exit;
 
 typedef struct s_cmd
@@ -76,6 +77,18 @@ typedef struct s_expander
 	char	*var_name;
 	char	*var_value;
 }	t_expander;
+
+typedef struct s_exp_var
+{
+	size_t		i;
+	size_t		j;
+	size_t		var_len;
+	size_t		var_start;
+	char		*result;
+	char		*var_name;
+	char		*var_value;
+	char		*exit_str;
+}	t_exp_var;
 
 typedef struct s_main
 {

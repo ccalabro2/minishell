@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:01:41 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/28 12:03:37 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 18:27:43 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,31 @@ extern char	**environ;
 
 char	*find_path(t_exec_manager *tools)
 {
-	char	**split_path;
-	char	*candidate_path;
-	char	*joined_path;
-	char	*path_env;
-	int		i;
+	t_f_path	path;
 
-	candidate_path = NULL;
-	joined_path = NULL;
-	path_env = getenv("PATH");
-	i = 0;
-	if (!tools->cmd || !tools->cmd->args || !tools->cmd->args[0] || !path_env)
+	inizialize_path(&path);
+	if (!tools->cmd || !tools->cmd->args || !tools->cmd->args[0]
+		|| !path.path_env)
 		return (NULL);
-	split_path = ft_split(path_env, ':');
-	if (!split_path)
+	path.split = ft_split(path.path_env, ':');
+	if (!path.split)
 		return (NULL);
-	while (split_path[i])
+	while (path.split[path.i])
 	{
-		joined_path = ft_strjoin(split_path[i], "/");
-		if (!joined_path)
+		path.joined = ft_strjoin(path.split[path.i], "/");
+		if (!path.joined)
 			break ;
-		candidate_path = ft_strjoin(joined_path, tools->cmd->args[0]);
-		free(joined_path);
-		if (!candidate_path)
+		path.candidate = ft_strjoin(path.joined, tools->cmd->args[0]);
+		free(path.joined);
+		if (!path.candidate)
 			break ;
-		if (access(candidate_path, X_OK) == 0)
+		if (access(path.candidate, X_OK) == 0)
 			break ;
-		free(candidate_path);
-		candidate_path = NULL;
-		i++;
+		free(path.candidate);
+		path.candidate = NULL;
+		path.i++;
 	}
-	return (free_matrix(split_path), candidate_path);
+	return (free_matrix(path.split), path.candidate);
 }
 
 void	redirect_input(t_exec_manager *tools)
@@ -85,7 +79,7 @@ static void	re_out_short(t_exec_manager *tools, int *out_fd)
 		(*out_fd) = open(tools->cmd->output, O_WRONLY
 				| O_CREAT | O_TRUNC, 0644);
 	if ((*out_fd) == -1)
-		return (fprintf(stderr, "Err open outfile"), exit(EXIT_FAILURE));
+		return (printf("Err open outfile"), exit(EXIT_FAILURE));
 }
 
 void	redirect_output(t_exec_manager *tools)
@@ -95,7 +89,7 @@ void	redirect_output(t_exec_manager *tools)
 	out_fd = -1;
 	if (tools->cmd->output)
 	{
-		if (strcmp(tools->cmd->output, PIPE_OUT) == 0
+		if (ft_strcmp(tools->cmd->output, PIPE_OUT) == 0
 			&& tools->pipe_std_out >= 0)
 			out_fd = tools->pipe_std_out;
 		else

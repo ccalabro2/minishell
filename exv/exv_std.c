@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:02:30 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/28 16:35:08 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:38:23 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,6 @@ void	std_exv(t_main *core)
 			g_exit = 128 + WTERMSIG(status);
 		j++;
 	}
-	// if (tools.old_fd[0] > -1)
-	// 	close(tools.old_fd[0]);
-	// if (tools.old_fd[1] > -1)
-	// 	close(tools.old_fd[1]);
-	// if (tools.fd[0] > -1)
-	// 	close(tools.fd[0]);
-	// if (tools.fd[1] > -1)
-	// 	close(tools.fd[1]);
 	ass_close(&tools);
 	free(pids);
 }

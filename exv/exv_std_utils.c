@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:22:52 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/28 16:34:42 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 18:23:33 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,12 @@ void	ass_close(t_exec_manager *tools)
 		close(tools->fd[0]);
 	if (tools->fd[1] > -1)
 		close(tools->fd[1]);
+}
+
+void	inizialize_path(t_f_path *path)
+{
+	path->candidate = NULL;
+	path->joined = NULL;
+	path->i = 0;
+	path->path_env = getenv("PATH");
 }

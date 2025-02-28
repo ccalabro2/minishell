@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_op_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
+/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:14:57 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/27 20:01:59 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:44:22 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	count_words(const char *str)
 	return (count);
 }
 
-char	**split_words(const char *s, char **result, int word_count) /// CONTROLLA PER IL ECHO "CIAO"
+char	**split_words(const char *s, char **result, int word_count)
 {
 	int	i;
 	int	k;
@@ -65,7 +65,7 @@ char	**split_words(const char *s, char **result, int word_count) /// CONTROLLA P
 		{
 			i++;
 			result[k++] = extract_quotes(s, &i);
-			i++; //aaaaaa so solo una ppova
+			i++;
 		}
 		else
 			result[k++] = extract_word(s, &i);
@@ -85,14 +85,10 @@ char	**ft_op_split(char const *s, char c)
 	if (!s)
 		return (0);
 	word_count = count_words(s);
-	printf("count word: %d\n", word_count);
 	result = (char **)malloc(sizeof(char *) * (word_count + 1));
 	if (!result)
 		return (0);
-	
+
 	split_words(s, result, word_count);
-	
-	printf("result: %s\n", result[3]);
-	
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/28 18:24:20 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:02:19 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,4 +201,6 @@ void	else_std_exv(t_exec_manager *tools, pid_t *pids, int *i);
 void	f_while(t_exec_manager *tools, t_main *core, pid_t *pids, int *i);
 void	ass_close(t_exec_manager *tools);
 void	inizialize_path(t_f_path *pather);
+void	inizialize_heredoc(char *str, t_main *main);
+void	bob(t_main *main);
 // #endif

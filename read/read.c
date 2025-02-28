@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/28 12:14:52 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 19:02:14 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,7 @@ void	here_doc_open(char *del)
 
 int	heredoc(char *str, t_main *main)
 {
-	main->h.f = 0;
-	main->h.k = 0;
-	main->h.i = 0;
-	main->h.boll = 1;
-	main->h.retun = str;
-	ft_memset(main->h.del, 0, 250);
+	inizialize_heredoc(str, main);
 	while (str[main->h.i])
 	{
 		if (str[main->h.i] == '<' && str[main->h.i + 1] == '<')
@@ -71,9 +66,7 @@ int	heredoc(char *str, t_main *main)
 		}
 		main->h.retun[main->h.f++] = str[main->h.i++];
 	}
-	main->h.retun[main->h.f] = '\0';
-	if (main->h.boll == 0)
-		here_doc_open(main->h.del);
+	bob(main);
 	return (main->h.boll);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:06:40 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/28 14:57:02 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/02/28 18:34:13 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	check_expander_if(t_exp_var exp)
 	free(exp.exit_str);
 	exp.i += 2;
 }
-//struttura->modifichiamo tutta la funzione->tagliamo->dc
 
 static void	check_expander_else(t_exp_var *exp, char *line)
 {

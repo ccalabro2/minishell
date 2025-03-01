@@ -15,9 +15,9 @@ SRCS = $(wildcard *.c) \
 		$(wildcard ./exv/*.c) \
 		$(wildcard ./memory/*.c) \
 
-
-
 OBJS = $(SRCS:.c=.o)
+
+.PHONY: all clean fclean re
 
 all: $(NAME)
 

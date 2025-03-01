@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   standardEnv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 17:39:04 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/26 19:28:52 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:09:12 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ const char *value, size_t len)
 	char	**new_env;
 	char	*new_entry;
 
-	new_env = realloc(*env, (len + 2) * sizeof(char *));
+	new_env = ft_realloc(*env, (len + 2) * sizeof(char *));
 	if (!new_env)
 		return (perror("realloc set val"), -1);
 	*env = new_env;

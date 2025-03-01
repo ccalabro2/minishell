@@ -6,12 +6,9 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/03/01 15:52:43 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:17:25 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// #ifndef BUILTIN_H
-// # define BUILTIN_H
 
 #include <unistd.h>
 #include <signal.h>
@@ -207,5 +204,5 @@ void	prompt(t_main *main, char **env);
 void	call_heredoc_nd_ctrl_d(t_main *main);
 size_t	ft_spn(const char *s, const char *accept);
 int		ft_isalnum(int c);
-
-// #endif
+void	*ft_memcpy(void	*dest, const void *src, size_t n);
+void	*ft_realloc(void *ptr, size_t size);

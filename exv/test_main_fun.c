@@ -6,7 +6,7 @@
 /*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:01:41 by fluzi             #+#    #+#             */
-/*   Updated: 2025/03/01 13:36:44 by ccalabro         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:17:46 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ void	redirect_input(t_exec_manager *tools)
 	in_fd = -1;
 	if (tools->cmd->input)
 	{
-		if (strcmp(tools->cmd->input, PIPE_IN) == 0 && tools->pipe_std_in >= 0)
+		if (ft_strcmp(tools->cmd->input, PIPE_IN)
+			== 0 && tools->pipe_std_in >= 0)
 			in_fd = tools->pipe_std_in;
 		else
 		{
 			in_fd = open(tools->cmd->input, O_RDONLY);
 			if (in_fd == -1)
-				return (fprintf(stderr, "Err open inputf"), exit(EXIT_FAILURE));
+				return (printf("Err open inputf"), exit(EXIT_FAILURE));
 		}
 		if (dup2(in_fd, STDIN_FILENO) == -1)
 		{
@@ -119,13 +120,13 @@ void	exe_func(t_exec_manager *tools)
 		path = find_path(tools);
 	if (!path)
 	{
-		fprintf(stderr, "Command not found: %s\n", tools->cmd->command);
+		printf("Command not found: %s\n", tools->cmd->command);
 		exit(EXIT_FAILURE);
 	}
 	redirect_input(tools);
 	redirect_output(tools);
 	stat = execve(path, tools->cmd->args, environ);
-	fprintf(stderr, "%d\n", stat);
+	printf("%d\n", stat);
 	if (stat == -1)
 	{
 		perror("execve");

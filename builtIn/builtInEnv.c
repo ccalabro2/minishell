@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtInEnv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 20:51:55 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/26 14:49:24 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:03:48 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	builtin_export(char ***env, const char *key)
 	char	**split_prompt;
 
 	split_prompt = ft_split(key, '=');
-	printf("{%s} , {%s}\n", split_prompt[0], split_prompt[1]);
 	if (set_env_value(env, split_prompt[0], split_prompt[1]) == -1)
 	{
 		perror("export: failed to set \n");
@@ -38,11 +37,11 @@ void	builtin_unset(char ***env, const char *key)
 {
 	if (!key)
 	{
-		fprintf (stderr, "unset: missing argument\n");
+		printf ("unset: missing argument\n");
 		return ;
 	}
 	if (unset_env_value(env, key) == -1)
 	{
-		fprintf (stderr, "unset: `%s` not found\n", key);
+		printf ("unset: `%s` not found\n", key);
 	}
 }

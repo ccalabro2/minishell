@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:00:57 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/28 12:19:49 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:15:15 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	check_parser(char ***matrix, t_cmd *elment_array, int index)
 {
 	if (!matrix)
 	{
-		printf("Errore: ft_op_split ha restituito NULL\n");
+		printf("Error: ft_op_split returned NULL\n");
 		return ;
 	}
 	if (elment_array->args)
@@ -82,7 +82,7 @@ void	check_parser(char ***matrix, t_cmd *elment_array, int index)
 	elment_array->args = malloc(sizeof(char *) * 250);
 	if (!elment_array->args)
 	{
-		printf("Errore: malloc fallita per args\n");
+		printf("Error: malloc failed for args\n");
 		free(matrix);
 		return ;
 	}

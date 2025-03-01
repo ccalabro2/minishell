@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 18:38:59 by ccalabro          #+#    #+#             */
-/*   Updated: 2025/02/28 19:26:13 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:52:43 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,5 +204,8 @@ void	inizialize_heredoc(char *str, t_main *main);
 void	bob(t_main *main);
 void	last_fun(t_main *main);
 void	prompt(t_main *main, char **env);
-void	shortp(t_main *main);
+void	call_heredoc_nd_ctrl_d(t_main *main);
+size_t	ft_spn(const char *s, const char *accept);
+int		ft_isalnum(int c);
+
 // #endif

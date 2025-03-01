@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 16:24:11 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/28 19:35:46 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:53:22 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,13 @@ void	v_read(t_main *main, char **env)
 			printf("exit\n");
 			break ;
 		}
-		if (strlen(main->inputstr) == 0 || strspn(main->inputstr, " \t\n\r")
-			== strlen(main->inputstr))
+		if (ft_strlen(main->inputstr) == 0 || ft_spn(main->inputstr, " \t\n\r")
+			== ft_strlen(main->inputstr))
 		{
 			free(main->inputstr);
 			continue ;
 		}
-		shortp(main);
+		call_heredoc_nd_ctrl_d(main);
 		if (ft_strcmp(main->inputstr, "") == 0)
 		{
 			if (access("IN_HEREDOC", F_OK) == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtIn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:55:52 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/28 19:14:52 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:03:05 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	cd_short(char *cwd, char *oldpwd, char *path)
 	}
 	if (chdir(path) == -1)
 	{
-		fprintf(stderr, "cd: %s: %s\n", path, strerror(errno));
+		printf("cd: %s: %s\n", path, path);
 		free(oldpwd);
 		return ;
 	}
@@ -60,7 +60,7 @@ void	ft_cd(int argc, char **argv)
 	else
 	{
 		path = argv[1];
-		if (strcmp(path, "-") == 0)
+		if (ft_strcmp(path, "-") == 0)
 		{
 			path = getenv("OLDPWD");
 			if (!path)

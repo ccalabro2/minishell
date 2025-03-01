@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_main_fun.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:01:41 by fluzi             #+#    #+#             */
-/*   Updated: 2025/02/28 18:27:43 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/03/01 13:36:44 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	re_out_short(t_exec_manager *tools, int *out_fd)
 		(*out_fd) = open(tools->cmd->output, O_WRONLY
 				| O_CREAT | O_TRUNC, 0644);
 	if ((*out_fd) == -1)
-		return (printf("Err open outfile"), exit(EXIT_FAILURE));
+		return (printf("Err open outfile\n"), exit(EXIT_FAILURE));
 }
 
 void	redirect_output(t_exec_manager *tools)
@@ -98,7 +98,7 @@ void	redirect_output(t_exec_manager *tools)
 		}
 		if (dup2(out_fd, STDOUT_FILENO) == -1)
 		{
-			perror("Error duplicating stdout");
+			perror("Error duplicating stdout\n");
 			if (out_fd >= 0)
 				close(out_fd);
 			exit(EXIT_FAILURE);

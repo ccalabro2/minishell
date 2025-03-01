@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_expander.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:06:40 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/28 18:34:13 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:52:34 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ static void	check_expander_if(t_exp_var exp)
 	exp.i += 2;
 }
 
+static void	dc(t_exp_var *exp, char *line)
+{
+	exp->i++;
+	exp->var_start = exp->i;
+	while (line[exp->i] && (isalnum(line[exp->i])
+			|| line[exp->i] == '_'))
+		exp->i++;
+}
+
 static void	check_expander_else(t_exp_var *exp, char *line)
 {
 	exp->var_name = ft_strndup(&line[exp->var_start], exp->i - exp->var_start);
@@ -35,7 +44,7 @@ static void	check_expander_else(t_exp_var *exp, char *line)
 		exp->var_len = ft_strlen(exp->var_value);
 		if (exp->j + exp->var_len < 8192)
 		{
-			strncpy(exp->result + exp->j, exp->var_value, exp->var_len);
+			ft_strncpy(exp->result + exp->j, exp->var_value, exp->var_len);
 			exp->j += exp->var_len;
 		}
 	}
@@ -48,14 +57,14 @@ static void	check_exp_while(t_exp_var *exp, char *line, bool *allow_expansion)
 		if (line[exp->i] == '$' && allow_expansion)
 		{
 			if (line[exp->i + 1] == '?')
+			{
 				check_expander_if(*exp);
+				printf("%d\n", g_exit);
+				return ;
+			}
 			else
 			{
-				exp->i++;
-				exp->var_start = exp->i;
-				while (line[exp->i] && (isalnum(line[exp->i])
-						|| line[exp->i] == '_'))
-					exp->i++;
+				dc(exp, line);
 				if (exp->var_start == exp->i)
 				{
 					exp->result[exp->j++] = '$';
@@ -76,7 +85,7 @@ char	*expand_variables(char *line, bool global_var_enable,
 
 	exp.i = 0;
 	exp.j = 0;
-	exp.result = malloc(8192);
+	exp.result = ft_calloc(8192, sizeof(char *));
 	if (!line || !global_var_enable || !exp.result)
 	{
 		if (line)

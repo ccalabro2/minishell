@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_read.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gd-auria <gd-auria@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccalabro <ccalabro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 18:40:53 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/02/28 19:25:57 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:35:43 by ccalabro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	prompt(t_main *main, char **env)
 	main->inputstr = readline("Minishell > ");
 }
 
-void	shortp(t_main *main)
+void	call_heredoc_nd_ctrl_d(t_main *main)
 {
 	handle_ctrl_d(main->inputstr);
 	heredoc(main->inputstr, main);
